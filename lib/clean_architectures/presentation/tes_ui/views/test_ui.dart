@@ -67,58 +67,32 @@ class _TestUiState extends State<TestUi> {
         onChangeTab: (index) {},
       ),
       body: PaginationViewCustom<ModelTest>(
-        paginationViewType: PaginationViewType.grid,
+        paginationViewType: PaginationViewType.list,
         paginationDataCall: paginationCall,
         physics: const AlwaysScrollableScrollPhysics(
           parent: BouncingScrollPhysics(),
         ),
-        hPadding: 10,
-        vPadding: 10,
-        typeIndicatorLoading: TypeIndicatorLoading.skeltonIndicator,
-        gridViewFormat: const GridViewFormat(
-          crossAxisCount: 3,
-        ),
+        typeIndicatorLoading: TypeIndicatorLoading
+            .skeltonIndicator, // or TypeIndicatorLoading.circularIndicator
         skeltonFormat: const SkeltonFormat(
-          columns: [4, 1],
+          columns: [1, 4],
+          height: 50.0,
         ),
         limitFetch: 15,
         items: <ModelTest>[
           ModelTest(userName: 'Hung', bio: 'Nguyen Minh Hung'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-          // ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
         ],
         itemBuilder: (BuildContext context, ModelTest data, int index) {
-          // return ListTile(
-          //   title: Text(data.userName),
-          //   subtitle: Text(data.bio),
-          //   leading: Container(
-          //     padding: const EdgeInsets.all(10.0),
-          //     decoration: BoxDecoration(
-          //       color: Theme.of(context).primaryColor,
-          //       shape: BoxShape.circle,
-          //     ),
-          //     child: const Icon(Icons.person),
-          //   ),
-          // );
-          return Container(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(data.userName),
-                Text(data.bio),
-              ],
+          return ListTile(
+            title: Text(data.userName),
+            subtitle: Text(data.bio),
+            leading: Container(
+              padding: const EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.person),
             ),
           );
         },
@@ -126,3 +100,19 @@ class _TestUiState extends State<TestUi> {
     );
   }
 }
+
+
+//  return Container(
+//             decoration: BoxDecoration(
+//               color: Theme.of(context).primaryColor,
+//               borderRadius: BorderRadius.circular(10),
+//             ),
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               crossAxisAlignment: CrossAxisAlignment.center,
+//               children: [
+//                 Text(data.userName),
+//                 Text(data.bio),
+//               ],
+//             ),
+//           );
