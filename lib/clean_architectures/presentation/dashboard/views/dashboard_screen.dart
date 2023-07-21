@@ -38,6 +38,7 @@ class _DashboardSCreenState extends State<DashboardSCreen> {
         return Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           bottomNavigationBar: TabBarCustom(
+            radius: 5.0,
             elevation: 0.1, // => elevation
             tabBarType: TabBarType
                 .animationTabBar, //if you want display test change to textTabBar

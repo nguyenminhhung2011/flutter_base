@@ -1,4 +1,8 @@
 {
     "update": "update",
-    "seeMore": "See more"
+    "seeMore": "See more",
+    "today": "Today",
+    "recentSpend": "Recent spend",
+    "categories": "Categories",
+    "category": "Category"
 }

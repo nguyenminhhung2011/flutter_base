@@ -49,7 +49,7 @@ class _ApplicationState extends State<Application> with WidgetsBindingObserver {
       theme: ThemeData(
         primaryColor: '#07AEAF'.toColor(),
         primaryColorDark: '#07AEAF'.toColor(),
-        // fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat',
       ),
       darkTheme: ThemeData.dark().copyWith(
         primaryColor: '#07AEAF'.toColor(),
