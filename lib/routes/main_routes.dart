@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/clean_architectures/presentation/dashboard/views/dashboard_screen.dart';
 import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
 import '../clean_architectures/presentation/tes_ui/views/test_ui.dart';
@@ -23,6 +24,13 @@ class MainRoutes {
           settings: settings,
           builder: (_) {
             return const TestUi();
+          },
+        );
+      case Routes.dashboard:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) {
+            return const DashboardSCreen();
           },
         );
 

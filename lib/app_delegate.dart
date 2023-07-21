@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import 'application.dart';
+import 'clean_architectures/presentation/dashboard/bloc/dashboard_bloc.dart';
 import 'clean_architectures/presentation/tes_ui/bloc/test_ui_bloc.dart';
 import 'core/components/configurations/configurations.dart';
 import 'core/dependency_injection/di.dart';
@@ -32,8 +33,9 @@ class AppDelegate {
       navigationKey: GlobalKey<NavigatorState>(),
       providers: [
         BlocProvider<TestUiBloc>(create: (_) => injector.get()),
+        BlocProvider<DashboardMobileBloc>(create: (_) => injector.get()),
       ],
-      initialRoute: Routes.testUi,
+      initialRoute: Routes.dashboard,
       savedThemeMode: savedThemeMode,
       isMobile: isMobile,
     );
