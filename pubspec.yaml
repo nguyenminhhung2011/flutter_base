@@ -123,6 +123,7 @@ dependencies:
   syncfusion_flutter_charts: ^21.2.10
   # table_calendar: ^3.0.8
   # readmore: ^2.2.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -147,6 +148,14 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logo.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+
 flutter_intl:
     enabled: true
     use_deferred_loading: true
