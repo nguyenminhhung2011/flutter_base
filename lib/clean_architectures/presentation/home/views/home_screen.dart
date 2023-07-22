@@ -97,31 +97,40 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
-          HeaderTextCustom(
-            headerText: S.of(context).anotherFeature,
-            textStyle: boldHeader,
-            isShowSeeMore: true,
-            onPress: () {},
-          ),
-          SwipedCustom(
-            height: 180,
-            itemCount: 3,
-            isShowSlideDot: false,
-            autoPlay: true,
-            itemBuilder: (_) => Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    ImageConst.baseImageView,
-                  ),
-                ),
+          Column(
+            children: [
+              HeaderTextCustom(
+                headerText: S.of(context).anotherFeature,
+                textStyle: boldHeader,
+                isShowSeeMore: true,
+                onPress: () {},
               ),
-            ),
-            swipedLayout: SwiperLayout.DEFAULT,
+              SwipedCustom(
+                height: 200,
+                itemCount: 3,
+                isShowSlideDot: false,
+                autoPlay: true,
+                itemBuilder: (index) {
+                  final color = switch (index) {
+                    0 => const Color.fromARGB(255, 87, 152, 248),
+                    1 => '#ffffdab5'.toColor(),
+                    _ => Theme.of(context).primaryColor.withOpacity(0.5),
+                  };
+                  return Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: color,
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: AssetImage(Constant.banners[index].toString()),
+                        ),
+                      ));
+                },
+                swipedLayout: SwiperLayout.DEFAULT,
+              ),
+            ],
           ),
           CategoryField(
             categoryType: CategoryType.expandCategory, // => Change here
