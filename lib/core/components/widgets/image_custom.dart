@@ -35,7 +35,6 @@ class ImageCustom extends StatelessWidget {
       width: width ?? 50.0,
       height: width ?? 50.0,
       fit: BoxFit.cover,
-      color: color,
     );
   }
 }

@@ -4,5 +4,11 @@
     "today": "Today",
     "recentSpend": "Recent spend",
     "categories": "Categories",
+    "overView": "Overview",
+    "reports": "Reports",
+    "incomeMoney": "Income money",
+    "expenseMoney": "Expense money",
+    "lendLoan": "Lend & loan",
+    "anotherFeature": "Another features",
     "category": "Category"
 }

@@ -17,7 +17,7 @@ class IconCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     String imageUrl = category.iconUrl ??
         switch (category.typeImage) {
-          TypeImage.assetImage => '', // add assets image,
+          TypeImage.assetImage => ImageConst.eMoneyIcon, // add assets image,
           TypeImage.assetSvg => ImageConst.homeIcon,
           _ => ImageConst.baseImageView,
         };

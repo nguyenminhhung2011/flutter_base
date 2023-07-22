@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 
-class SwiperCustom extends StatefulWidget {
-  final SwiperLayout? swiperLayout;
+class SwipedCustom extends StatefulWidget {
+  final SwiperLayout? swipedLayout;
   final int itemCount;
   final int? duration;
   final Widget Function(int index) itemBuilder;
@@ -17,7 +17,7 @@ class SwiperCustom extends StatefulWidget {
   final bool swipperOnly;
   final EdgeInsetsGeometry? margin;
   final SwiperController? controller;
-  const SwiperCustom({
+  const SwipedCustom({
     super.key,
     required this.itemCount,
     required this.itemBuilder,
@@ -27,7 +27,7 @@ class SwiperCustom extends StatefulWidget {
     this.scale,
     this.duration,
     this.autoPlay,
-    required this.swiperLayout,
+    required this.swipedLayout,
     this.margin,
     this.isShowSlideDot = true,
     this.isCenterSlideDot = true,
@@ -37,10 +37,10 @@ class SwiperCustom extends StatefulWidget {
   });
 
   @override
-  State<SwiperCustom> createState() => _SwiperCustomState();
+  State<SwipedCustom> createState() => _SwipedCustomState();
 }
 
-class _SwiperCustomState extends State<SwiperCustom> {
+class _SwipedCustomState extends State<SwipedCustom> {
   late SwiperController swiperController;
   late ValueNotifier<int> index;
 
@@ -112,7 +112,7 @@ class _SwiperCustomState extends State<SwiperCustom> {
       height: widget.height ?? double.infinity,
       child: Swiper(
         onIndexChanged: (newIndex) => index.value = newIndex,
-        layout: widget.swiperLayout ?? SwiperLayout.TINDER,
+        layout: widget.swipedLayout ?? SwiperLayout.TINDER,
         controller: swiperController,
         autoplay: widget.autoPlay ?? false,
         viewportFraction: widget.viewPortFraction ?? 0.8,

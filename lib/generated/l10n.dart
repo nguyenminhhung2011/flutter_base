@@ -100,6 +100,66 @@ class S {
     );
   }
 
+  /// `Overview`
+  String get overView {
+    return Intl.message(
+      'Overview',
+      name: 'overView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports`
+  String get reports {
+    return Intl.message(
+      'Reports',
+      name: 'reports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Income money`
+  String get incomeMoney {
+    return Intl.message(
+      'Income money',
+      name: 'incomeMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expense money`
+  String get expenseMoney {
+    return Intl.message(
+      'Expense money',
+      name: 'expenseMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lend & loan`
+  String get lendLoan {
+    return Intl.message(
+      'Lend & loan',
+      name: 'lendLoan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Another features`
+  String get anotherFeature {
+    return Intl.message(
+      'Another features',
+      name: 'anotherFeature',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Category`
   String get category {
     return Intl.message(

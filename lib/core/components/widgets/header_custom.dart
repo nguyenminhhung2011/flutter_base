@@ -41,7 +41,7 @@ class HeaderTextCustom extends StatelessWidget {
               child: Text(
                 S.of(context).seeMore,
                 style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                       color: Theme.of(context).primaryColor,
                     ),
               ),

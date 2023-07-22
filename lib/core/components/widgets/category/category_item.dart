@@ -33,11 +33,11 @@ class CategoryItem extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(category.radius ?? 10.0),
-              color: category.color?.withOpacity(0.1) ??
-                  Theme.of(context).primaryColor.withOpacity(0.1),
+              color: category.color?.withOpacity(0.2) ??
+                  Theme.of(context).primaryColor.withOpacity(0.2),
             ),
             child: (isIconOut)
-                ? category.iconUrl != null || category.iconWidget != null
+                ? category.iconUrl != null
                     ? IconCategory(category: category)
                     : const SizedBox()
                 : Row(
