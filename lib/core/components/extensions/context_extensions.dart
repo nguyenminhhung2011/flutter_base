@@ -26,13 +26,28 @@ extension ContextExtension on BuildContext {
             fontWeight: FontWeight.w600,
           );
 
-  TextStyle get headlineMedium => Theme.of(this).textTheme.headlineMedium!;
-  TextStyle get headlineLarge => Theme.of(this).textTheme.headlineLarge!;
-  TextStyle get headlineSmall => Theme.of(this).textTheme.headlineSmall!;
+  TextStyle get headlineMedium =>
+      Theme.of(this).textTheme.headlineMedium!.copyWith(
+            fontFamily: 'Montserrat',
+          );
+  TextStyle get headlineLarge =>
+      Theme.of(this).textTheme.headlineLarge!.copyWith(
+            fontFamily: 'Montserrat',
+          );
+  TextStyle get headlineSmall =>
+      Theme.of(this).textTheme.headlineSmall!.copyWith(
+            fontFamily: 'Montserrat',
+          );
 
-  TextStyle get titleSmall => Theme.of(this).textTheme.titleSmall!;
-  TextStyle get titleMedium => Theme.of(this).textTheme.titleMedium!;
-  TextStyle get titleLarge => Theme.of(this).textTheme.titleLarge!;
+  TextStyle get titleSmall => Theme.of(this).textTheme.titleSmall!.copyWith(
+        fontFamily: 'Montserrat',
+      );
+  TextStyle get titleMedium => Theme.of(this).textTheme.titleMedium!.copyWith(
+        fontFamily: 'Montserrat',
+      );
+  TextStyle get titleLarge => Theme.of(this).textTheme.titleLarge!.copyWith(
+        fontFamily: 'Montserrat',
+      );
 
   TextStyle get headerAppBarTextStyle =>
       Theme.of(this).textTheme.titleMedium!.copyWith(
@@ -40,5 +55,7 @@ extension ContextExtension on BuildContext {
             color: Theme.of(this).scaffoldBackgroundColor,
           );
 
-  TextStyle get bodyMedium => Theme.of(this).textTheme.bodyMedium!;
+  TextStyle get bodyMedium => Theme.of(this).textTheme.bodyMedium!.copyWith(
+        fontFamily: 'Montserrat',
+      );
 }

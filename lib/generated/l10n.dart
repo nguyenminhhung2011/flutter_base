@@ -140,6 +140,56 @@ class S {
     );
   }
 
+  /// `Budgets`
+  String get budgets {
+    return Intl.message(
+      'Budgets',
+      name: 'budgets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `InFlow`
+  String get inFlow {
+    return Intl.message(
+      'InFlow',
+      name: 'inFlow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Summary`
+  String get summary {
+    return Intl.message(
+      'Summary',
+      name: 'summary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OutFlow`
+  String get outFlow {
+    return Intl.message(
+      'OutFlow',
+      name: 'outFlow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View report`
+  String get viewReport {
+    return Intl.message(
+      'View report',
+      name: 'viewReport',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Lend & loan`
   String get lendLoan {
     return Intl.message(

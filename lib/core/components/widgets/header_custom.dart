@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 
 import '../../../../generated/l10n.dart';
 
@@ -29,9 +30,9 @@ class HeaderTextCustom extends StatelessWidget {
             child: Text(
               headerText,
               style: textStyle ??
-                  Theme.of(context).textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                  context.titleLarge.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           if (widget != null) widget!,
@@ -40,10 +41,10 @@ class HeaderTextCustom extends StatelessWidget {
               onPressed: onPress ?? () {},
               child: Text(
                 S.of(context).seeMore,
-                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).primaryColor,
-                    ),
+                style: context.titleSmall.copyWith(
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             )
         ],

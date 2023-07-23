@@ -144,12 +144,6 @@ class _PageTest2State extends State<PageTest2> {
         // color: Theme.of(context).hintColor,
         fontSize: 11.0,
       ),
-      // autoScrollCategoryStyle: const AutoScrollCategoryStyle(
-      //   animatedDuration: 350,
-      //   radius: 5.0,
-      //   categoryItemHeight: 40,
-      //   indicatorPadding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
-      // ),
       bothCategoryStyle: BothCategoryStyle(
         firstSiteColor: Theme.of(context).primaryColor,
         isGroupFormat: true,

@@ -8,6 +8,11 @@
     "reports": "Reports",
     "incomeMoney": "Income money",
     "expenseMoney": "Expense money",
+    "budgets": "Budgets",
+    "inFlow": "InFlow",
+    "summary": "Summary",
+    "outFlow": "OutFlow",
+    "viewReport": "View report",
     "lendLoan": "Lend & loan",
     "anotherFeature": "Another features",
     "category": "Category"

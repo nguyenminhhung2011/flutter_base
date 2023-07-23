@@ -17,6 +17,7 @@ import '../../../../core/components/constant/constant.dart';
 import '../../../../core/components/widgets/category/category_custom.dart';
 import '../../../../core/components/widgets/category/category_model.dart';
 import '../../../../core/components/widgets/category/category_type.dart';
+import '../../../../core/components/widgets/money_minder/category_icon.dart';
 
 class _ChartData {
   _ChartData(this.x, this.y, this.y1);
@@ -179,8 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 {
                   'color': const Color.fromARGB(255, 242, 199, 120),
-                  'body':
-                      _categoryFastViewField(context, headerStyle, smallStyle),
+                  'body': _budgetsFastView(context, headerStyle, smallStyle),
                 }
               ].mapIndexed((index, e) {
                 const hPadding = Constant.hPadding;
@@ -205,6 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }),
             ].expand((element) => [Expanded(child: element)]).toList(),
           ),
+          const Divider(),
           _headerCalendarView(context, headerStyle, smallStyle),
           _selectModView(context, smallStyle),
           _chartView(context),
@@ -244,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
             xValueMapper: (_ChartData data, _) => data.x,
             yValueMapper: (_ChartData data, _) => data.y, // max
             name: 'Spend',
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(25.0),
             pointColorMapper: (_ChartData data, index) => index == 2
                 ? Theme.of(context).primaryColor
                 : Theme.of(context).dividerColor,
@@ -383,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   '🐼 Panda wallet',
-                  style: TextStyle(
+                  style: context.titleSmall.copyWith(
                     color: backgroundColor.fontColorByBackground,
                     fontSize: 10.0,
                     fontWeight: FontWeight.w600,
@@ -460,14 +461,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column _categoryFastViewField(
+  Column _budgetsFastView(
       BuildContext context, TextStyle headerStyle, TextStyle smallStyle) {
     return Column(
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(S.of(context).categories, style: headerStyle),
+            Text(S.of(context).budgets, style: headerStyle),
             const Icon(Icons.arrow_forward_ios_sharp, size: 14.0)
           ],
         ),
@@ -616,36 +617,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ].expand((element) => [element, const Spacer()]).toList()
         ..removeLast(),
-    );
-  }
-}
-
-class CategoryIcon extends StatelessWidget {
-  final Color color;
-  final String icon;
-  final double radius;
-  final double iconSize;
-  const CategoryIcon({
-    super.key,
-    this.radius = 25.0,
-    this.iconSize = 10.0,
-    required this.color,
-    required this.icon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: radius,
-      height: radius,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        border: Border.all(width: 1.5, color: color),
-      ),
-      child: Center(
-        child: Text(icon, style: TextStyle(fontSize: iconSize)),
-      ),
     );
   }
 }

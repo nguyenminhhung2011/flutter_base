@@ -36,6 +36,7 @@ class _DashboardSCreenState extends State<DashboardSCreen> {
     return BlocBuilder<DashboardMobileBloc, DashboardMobileState>(
       builder: (context, state) {
         return Scaffold(
+          extendBody: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           bottomNavigationBar: TabBarCustom(
             radius: 5.0,

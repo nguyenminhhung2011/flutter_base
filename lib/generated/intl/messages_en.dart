@@ -24,16 +24,21 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
+        "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "expenseMoney": MessageLookupByLibrary.simpleMessage("Expense money"),
+        "inFlow": MessageLookupByLibrary.simpleMessage("InFlow"),
         "incomeMoney": MessageLookupByLibrary.simpleMessage("Income money"),
         "lendLoan": MessageLookupByLibrary.simpleMessage("Lend & loan"),
+        "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
         "recentSpend": MessageLookupByLibrary.simpleMessage("Recent spend"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
+        "summary": MessageLookupByLibrary.simpleMessage("Summary"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
-        "update": MessageLookupByLibrary.simpleMessage("update")
+        "update": MessageLookupByLibrary.simpleMessage("update"),
+        "viewReport": MessageLookupByLibrary.simpleMessage("View report")
       };
 }
