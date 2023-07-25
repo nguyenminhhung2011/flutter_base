@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
@@ -31,13 +32,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "inFlow": MessageLookupByLibrary.simpleMessage("InFlow"),
         "incomeMoney": MessageLookupByLibrary.simpleMessage("Income money"),
         "lendLoan": MessageLookupByLibrary.simpleMessage("Lend & loan"),
+        "nextMonth": MessageLookupByLibrary.simpleMessage("Next month"),
+        "nextYear": MessageLookupByLibrary.simpleMessage("Next year"),
         "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
         "recentSpend": MessageLookupByLibrary.simpleMessage("Recent spend"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "summary": MessageLookupByLibrary.simpleMessage("Summary"),
+        "thisMonth": MessageLookupByLibrary.simpleMessage("This month"),
+        "thisYear": MessageLookupByLibrary.simpleMessage("This year"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
+        "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "update": MessageLookupByLibrary.simpleMessage("update"),
         "viewReport": MessageLookupByLibrary.simpleMessage("View report")
       };

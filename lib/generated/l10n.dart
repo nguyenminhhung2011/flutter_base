@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Tomorrow`
+  String get tomorrow {
+    return Intl.message(
+      'Tomorrow',
+      name: 'tomorrow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Recent spend`
   String get recentSpend {
     return Intl.message(
@@ -115,6 +125,46 @@ class S {
     return Intl.message(
       'Reports',
       name: 'reports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This month`
+  String get thisMonth {
+    return Intl.message(
+      'This month',
+      name: 'thisMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next month`
+  String get nextMonth {
+    return Intl.message(
+      'Next month',
+      name: 'nextMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This year`
+  String get thisYear {
+    return Intl.message(
+      'This year',
+      name: 'thisYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next year`
+  String get nextYear {
+    return Intl.message(
+      'Next year',
+      name: 'nextYear',
       desc: '',
       args: [],
     );
@@ -175,6 +225,16 @@ class S {
     return Intl.message(
       'OutFlow',
       name: 'outFlow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
       desc: '',
       args: [],
     );

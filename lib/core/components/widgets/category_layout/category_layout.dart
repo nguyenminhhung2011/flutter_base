@@ -77,18 +77,20 @@ class BothCategoryStyle {
   final BoxDecoration? selectedFormat;
   final EdgeInsets? categoryPadding;
   final Widget Function(CategoryLayoutModel)? headerCategoryView;
+  final Widget? separated;
   const BothCategoryStyle({
     this.categorySpacing = 0.0,
     this.isGroupFormat = false,
+    this.headerCategoryView,
+    this.vPaddingSecondSite,
+    this.hPaddingSecondSite,
     this.secondExpand = 10,
     this.firstExpand = 3,
-    this.hPaddingSecondSite,
-    this.vPaddingSecondSite,
-    this.headerCategoryView,
     this.categoryPadding,
     this.secondSiteColor,
     this.selectedFormat,
     this.firstSiteColor,
+    this.separated,
     this.physics,
   });
 }
@@ -598,7 +600,8 @@ class _CategoryLayoutViewState<T> extends State<CategoryLayoutView<T>>
           color: Theme.of(context).primaryColor,
         ),
       ),
-      separatedItem: (_, __) => const SizedBox(),
+      separatedItem: (_, __) =>
+          widget.bothCategoryStyle.separated ?? const SizedBox(),
       typeIndicatorLoading: TypeIndicatorLoading.circularIndicator,
       circularIndicatorColor: Theme.of(context).primaryColor,
       skeltonFormat: const SkeltonFormat(

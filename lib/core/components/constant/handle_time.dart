@@ -76,3 +76,4 @@ TimeOfDay intToTimeLeft(int? value) {
 int timeOfDayToInt(TimeOfDay time) => time.hour * 3600 + time.minute * 60;
 
 Duration durationBetweenDate(DateTime from, DateTime to) => to.difference(from);
+DateTime getDate(DateTime d) => DateTime(d.year, d.month, d.day);
