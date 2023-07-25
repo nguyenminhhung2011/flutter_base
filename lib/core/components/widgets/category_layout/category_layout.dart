@@ -599,7 +599,8 @@ class _CategoryLayoutViewState<T> extends State<CategoryLayoutView<T>>
         ),
       ),
       separatedItem: (_, __) => const SizedBox(),
-      typeIndicatorLoading: TypeIndicatorLoading.skeltonIndicator,
+      typeIndicatorLoading: TypeIndicatorLoading.circularIndicator,
+      circularIndicatorColor: Theme.of(context).primaryColor,
       skeltonFormat: const SkeltonFormat(
         columns: [1],
         height: 80.0,

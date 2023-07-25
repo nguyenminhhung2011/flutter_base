@@ -273,13 +273,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ...<String>['D', 'W', 'M', 'Y'].mapIndexed((index, e) {
               final isSelected = index == 2;
               final backColor = isSelected
-                  ? Theme.of(context).dividerColor.withOpacity(0.05)
+                  ? Theme.of(context).dividerColor
                   : Colors.transparent;
               final textColor = isSelected
                   ? Theme.of(context).primaryColor
-                  : Theme.of(context).dividerColor;
+                  : context.titleLarge.color;
               return InkWell(
                 onTap: () {},
+                borderRadius: BorderRadius.circular(10.0),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 10.0,

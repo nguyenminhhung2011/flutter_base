@@ -13,9 +13,13 @@ import '../../../../core/components/widgets/category_layout/category_layout.dart
 import '../../../../core/components/widgets/category_layout/category_layout_type.dart';
 import '../../tes_ui/views/test_ui.dart';
 
-// class Transaction {
-//   final String id;
-// }
+class Transaction {
+  final String id;
+
+  Transaction({
+    required this.id,
+  });
+}
 
 class OverviewScreen extends StatefulWidget {
   const OverviewScreen({super.key});
@@ -118,8 +122,8 @@ class _OverviewScreenState extends State<OverviewScreen>
                 fontSize: 12.0,
               ),
               bothCategoryStyle: BothCategoryStyle(
-                firstSiteColor: Theme.of(context).scaffoldBackgroundColor,
-                secondSiteColor: Theme.of(context).scaffoldBackgroundColor,
+                firstSiteColor: backgroundColor,
+                secondSiteColor: backgroundColor,
                 hPaddingSecondSite: 5.0,
                 selectedFormat: BoxDecoration(
                   color: Theme.of(context).primaryColor.withOpacity(0.5),
