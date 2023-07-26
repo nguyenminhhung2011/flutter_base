@@ -200,6 +200,16 @@ class S {
     );
   }
 
+  /// `Budget categories`
+  String get budgetsCategories {
+    return Intl.message(
+      'Budget categories',
+      name: 'budgetsCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `InFlow`
   String get inFlow {
     return Intl.message(
@@ -240,6 +250,16 @@ class S {
     );
   }
 
+  /// `add`
+  String get add {
+    return Intl.message(
+      'add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Events`
   String get event {
     return Intl.message(
@@ -275,6 +295,36 @@ class S {
     return Intl.message(
       'View',
       name: 'view',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spent`
+  String get spent {
+    return Intl.message(
+      'Spent',
+      name: 'spent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `of`
+  String get of1 {
+    return Intl.message(
+      'of',
+      name: 'of1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remaining at this month`
+  String get remainingAtThisMonth {
+    return Intl.message(
+      'Remaining at this month',
+      name: 'remainingAtThisMonth',
       desc: '',
       args: [],
     );

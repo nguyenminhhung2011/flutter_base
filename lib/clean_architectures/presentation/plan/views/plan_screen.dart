@@ -1,9 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/image_const.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/button_custom.dart';
 import 'package:flutter_base_clean_architecture/generated/l10n.dart';
+import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
@@ -26,7 +28,7 @@ class _PlanScreenState extends State<PlanScreen> {
         toolbarHeight: 80.0,
         title: Text(
           S.of(context).planning,
-          style: context.titleLarge.copyWith(fontWeight: FontWeight.w700),
+          style: context.titleLarge.copyWith(fontWeight: FontWeight.w600),
         ),
       ),
       body: ListView(
@@ -68,7 +70,12 @@ class _PlanScreenState extends State<PlanScreen> {
                   'Automatically scheduling future transactions can help streamline your finances'
             },
           ].mapIndexed(
-            (index, e) => _itemView(e, context, call: () {}),
+            (index, e) => _itemView(e, context, call: () {
+              switch (index) {
+                case 0:
+                  context.openListPageWithRoute(Routes.budgets);
+              }
+            }),
           ),
         ].expand((element) => [element, const SizedBox(height: 5.0)]).toList(),
       ),
@@ -144,6 +151,7 @@ class _PlanScreenState extends State<PlanScreen> {
                           e['slogan'].toString(),
                           style: context.titleSmall.copyWith(
                             fontSize: 12,
+                            color: Colors.white,
                           ),
                         ),
                         const SizedBox(height: 10.0),
@@ -158,6 +166,7 @@ class _PlanScreenState extends State<PlanScreen> {
                             style: context.titleSmall.copyWith(
                               fontSize: 10.0,
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                         )

@@ -51,10 +51,12 @@ class _ApplicationState extends State<Application> with WidgetsBindingObserver {
         primaryColorDark: '#07AEAF'.toColor(),
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Montserrat',
+        dividerColor: Colors.grey.withOpacity(0.4),
       ),
       darkTheme: ThemeData.dark().copyWith(
         primaryColor: '#07AEAF'.toColor(),
-        scaffoldBackgroundColor: Colors.black
+        scaffoldBackgroundColor: Colors.black,
+        dividerColor: Colors.grey.withOpacity(0.4),
       ),
       locale: locale,
     );

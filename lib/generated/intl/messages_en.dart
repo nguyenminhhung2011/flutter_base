@@ -22,12 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("add"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
         "bill": MessageLookupByLibrary.simpleMessage("Bills"),
         "budget": MessageLookupByLibrary.simpleMessage("Budgets"),
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
+        "budgetsCategories":
+            MessageLookupByLibrary.simpleMessage("Budget categories"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
@@ -37,13 +40,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "lendLoan": MessageLookupByLibrary.simpleMessage("Lend & loan"),
         "nextMonth": MessageLookupByLibrary.simpleMessage("Next month"),
         "nextYear": MessageLookupByLibrary.simpleMessage("Next year"),
+        "of1": MessageLookupByLibrary.simpleMessage("of"),
         "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
         "planning": MessageLookupByLibrary.simpleMessage("Planning"),
         "recentSpend": MessageLookupByLibrary.simpleMessage("Recent spend"),
         "recurring": MessageLookupByLibrary.simpleMessage("Recurring"),
+        "remainingAtThisMonth":
+            MessageLookupByLibrary.simpleMessage("Remaining at this month"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
+        "spent": MessageLookupByLibrary.simpleMessage("Spent"),
         "summary": MessageLookupByLibrary.simpleMessage("Summary"),
         "thisMonth": MessageLookupByLibrary.simpleMessage("This month"),
         "thisYear": MessageLookupByLibrary.simpleMessage("This year"),
