@@ -36,14 +36,18 @@ class _DashboardSCreenState extends State<DashboardSCreen> {
     return BlocBuilder<DashboardMobileBloc, DashboardMobileState>(
       builder: (context, state) {
         return Scaffold(
-          extendBody: true,
+          extendBody: false,
+          // floatingActionButton: IconButton(
+          //   icon: const Icon(Icons.add, color: Colors.white),
+          //   onPressed: () {},
+          // ),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           bottomNavigationBar: TabBarCustom(
             radius: 5.0,
             elevation: 0.1, // => elevation
             tabBarType: TabBarType
                 .animationTabBar, //if you want display test change to textTabBar
-            // tabBarColor: Colors.black,
+            // tabBarColor: Theme.of(context).dividerColor,
             iconSize: 23.0,
             iconSelectedColor: Theme.of(context).primaryColor,
             duration: 200, // => set animation when change tab

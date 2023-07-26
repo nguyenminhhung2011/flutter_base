@@ -13,8 +13,6 @@ import '../../../../core/components/enum/time_view_enum.dart';
 import '../../../../core/components/widgets/category_layout/category_layout.dart';
 import '../../../../core/components/widgets/category_layout/category_layout_type.dart';
 
-
-
 class TimeView {
   final DateTime startTime;
   final DateTime finishTime;
@@ -385,9 +383,7 @@ class _OverviewScreenState extends State<OverviewScreen>
         unselectedLabelStyle: context.titleSmall,
         labelColor: context.titleSmall.color,
         unselectedLabelColor: Theme.of(context).hintColor,
-        labelStyle: context.titleSmall.copyWith(
-          fontWeight: FontWeight.bold,
-        ),
+        labelStyle: context.titleSmall.copyWith(fontWeight: FontWeight.bold),
         indicatorColor: Theme.of(context).primaryColor,
         tabs: [
           if (_typeView.value != 'All transactions')
@@ -430,7 +426,7 @@ class _OverviewScreenState extends State<OverviewScreen>
       backgroundColor: backgroundColor,
       elevation: 0,
       automaticallyImplyLeading: false,
-      // toolbarHeight: 80.0,
+      toolbarHeight: 80.0,
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -257,7 +257,7 @@ class _PaginationViewCustomState<T> extends State<PaginationViewCustom<T>> {
   Widget _loadingBottom() {
     if (widget.typeIndicatorLoading == TypeIndicatorLoading.circularIndicator) {
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0),
+        padding: const EdgeInsets.symmetric(vertical: 15.0),
         child: Center(
           child: CircularProgressIndicator(
             color: widget.circularIndicatorColor,

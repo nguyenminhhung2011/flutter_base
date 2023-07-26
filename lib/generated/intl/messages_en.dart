@@ -25,9 +25,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
+        "bill": MessageLookupByLibrary.simpleMessage("Bills"),
+        "budget": MessageLookupByLibrary.simpleMessage("Budgets"),
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "event": MessageLookupByLibrary.simpleMessage("Events"),
         "expenseMoney": MessageLookupByLibrary.simpleMessage("Expense money"),
         "inFlow": MessageLookupByLibrary.simpleMessage("InFlow"),
         "incomeMoney": MessageLookupByLibrary.simpleMessage("Income money"),
@@ -36,7 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "nextYear": MessageLookupByLibrary.simpleMessage("Next year"),
         "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
+        "planning": MessageLookupByLibrary.simpleMessage("Planning"),
         "recentSpend": MessageLookupByLibrary.simpleMessage("Recent spend"),
+        "recurring": MessageLookupByLibrary.simpleMessage("Recurring"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "summary": MessageLookupByLibrary.simpleMessage("Summary"),
@@ -45,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "update": MessageLookupByLibrary.simpleMessage("update"),
+        "view": MessageLookupByLibrary.simpleMessage("View"),
         "viewReport": MessageLookupByLibrary.simpleMessage("View report")
       };
 }

@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/home/views/home_screen.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/overview/view/overview_screen.dart';
+import 'package:flutter_base_clean_architecture/clean_architectures/presentation/plan/views/plan_screen.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/tab_bar/tab_bar_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -29,7 +30,11 @@ class DashboardMobileBloc
               title: 'Search',
               screen: const OverviewScreen(),
             ),
-            TabBarModel(svgAsset: ImageConst.documentIcon, title: 'Favorite'),
+            TabBarModel(
+              svgAsset: ImageConst.documentIcon,
+              title: 'Plan',
+              screen: const PlanScreen(),
+            ),
             TabBarModel(svgAsset: ImageConst.personIcon, title: 'Profile')
           ], 0, true),
         ) {

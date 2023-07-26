@@ -289,6 +289,7 @@ class _CategoryLayoutViewState<T> extends State<CategoryLayoutView<T>>
     if (widget.bothCategoryStyle.isGroupFormat) {
       onTabChange(index);
     } else {
+      print(newCategory.id);
       _paginationNotifier!.category = newCategory.id;
       _paginationNotifier!.refreshItems(widget.scrollFormat.limitFetch);
     }

@@ -240,6 +240,66 @@ class S {
     );
   }
 
+  /// `Events`
+  String get event {
+    return Intl.message(
+      'Events',
+      name: 'event',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recurring`
+  String get recurring {
+    return Intl.message(
+      'Recurring',
+      name: 'recurring',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bills`
+  String get bill {
+    return Intl.message(
+      'Bills',
+      name: 'bill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View`
+  String get view {
+    return Intl.message(
+      'View',
+      name: 'view',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Budgets`
+  String get budget {
+    return Intl.message(
+      'Budgets',
+      name: 'budget',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Planning`
+  String get planning {
+    return Intl.message(
+      'Planning',
+      name: 'planning',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `View report`
   String get viewReport {
     return Intl.message(
