@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppbarCustom extends StatelessWidget {
+class AppBarCustom extends StatelessWidget {
   final Color? backgroundColor;
   final bool? snap;
   final bool? forceElevated;
@@ -24,7 +24,7 @@ class AppbarCustom extends StatelessWidget {
   final Widget? widgeExpanded;
   final Widget? titleExpand;
 
-  const AppbarCustom({
+  const AppBarCustom({
     super.key,
     this.backgroundColor,
     this.snap,

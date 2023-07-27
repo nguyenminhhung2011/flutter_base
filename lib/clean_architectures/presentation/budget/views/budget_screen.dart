@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/constant.dart';
+import 'package:flutter_base_clean_architecture/core/components/constant/image_const.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
 import 'package:flutter_base_clean_architecture/generated/l10n.dart';
@@ -22,6 +23,9 @@ class _BudgetScreenState extends State<BudgetScreen> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
+        flexibleSpace: Container(
+          width: double.infinity,
+        ),
         toolbarHeight: 80.0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: context.titleLarge.color),
@@ -38,10 +42,31 @@ class _BudgetScreenState extends State<BudgetScreen> {
           parent: BouncingScrollPhysics(),
         ),
         children: [
-          const SizedBox(height: 5.0),
-          _overviewField(context),
-          const SizedBox(height: 10.0),
-          Divider(color: Theme.of(context).dividerColor),
+          Stack(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 170,
+                child: Image.asset(ImageConst.budget, fit: BoxFit.cover),
+              ),
+              Container(
+                width: double.infinity,
+                height: 170,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  colors: [
+                    Theme.of(context).shadowColor.withOpacity(0.8),
+                    Theme.of(context).shadowColor.withOpacity(0.8),
+                    Theme.of(context).shadowColor.withOpacity(0.8),
+                  ],
+                )),
+              ),
+              SizedBox(
+                height: 170.0,
+                child: _overviewField(context),
+              ),
+            ],
+          ),
           Row(
             children: [
               const SizedBox(width: Constant.hPadding),
@@ -99,6 +124,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
 
   Row _overviewField(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(width: 15),
         Expanded(
@@ -111,13 +137,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
                 style: context.titleLarge.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
+                  color: Colors.white, 
                 ),
               ),
               const SizedBox(height: 10.0),
               RichText(
                 text: TextSpan(
                   style: context.titleSmall.copyWith(
-                    color: Theme.of(context).hintColor,
+                    color: Colors.white,
                   ),
                   children: [
                     TextSpan(text: S.of(context).remainingAtThisMonth),
@@ -134,14 +161,12 @@ class _BudgetScreenState extends State<BudgetScreen> {
               const SizedBox(height: 5.0),
               RichText(
                 text: TextSpan(
-                  style: context.titleSmall
-                      .copyWith(color: Theme.of(context).hintColor),
+                  style: context.titleSmall.copyWith(color: Colors.white),
                   children: [
                     TextSpan(text: S.of(context).spent),
                     TextSpan(
                       text: ' ${100000.price}',
-                      style: TextStyle(
-                        color: context.titleLarge.color,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
                     ),

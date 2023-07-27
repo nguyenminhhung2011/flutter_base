@@ -529,39 +529,8 @@ class _OverviewScreenState extends State<OverviewScreen>
               ),
             ),
           ),
-          ...<Map<String, dynamic>>[
-            if (isExpense || categoryModel.id == '0')
-              {'header': S.of(context).outFlow, 'data': 103013},
-            if (!isExpense || categoryModel.id == '0')
-              {'header': S.of(context).inFlow, 'data': 403013},
-            if (categoryModel.id == '0')
-              {'header': S.of(context).summary, 'data': 303013}
-          ].mapIndexed(
-            (index, e) {
-              final headerPrice =
-                  switch (index) { 0 => '-', 1 => '+', _ => '' };
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    e['header'].toString(),
-                    style: context.titleSmall.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).hintColor,
-                      fontSize: 12.0,
-                    ),
-                  ),
-                  Text(
-                    '$headerPrice ${(e['data'] as int).price}',
-                    style: context.titleSmall.copyWith(
-                      fontSize: 12.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
+         
+         
           InkWell(
             onTap: () {},
             child: Text(
