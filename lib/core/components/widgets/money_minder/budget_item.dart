@@ -16,6 +16,8 @@ class BudgetItem extends StatelessWidget {
   final String icon;
   final int expense;
   final int budget;
+  final String heroTag;
+
   final Function() viewDetail;
   const BudgetItem({
     super.key,
@@ -27,6 +29,7 @@ class BudgetItem extends StatelessWidget {
     required this.expense,
     required this.budget,
     required this.viewDetail,
+    required this.heroTag,
   });
 
   @override
@@ -53,11 +56,14 @@ class BudgetItem extends StatelessWidget {
             ),
             const SizedBox(width: 10.0),
             Expanded(
-              child: Text(
-                '$icon $header',
-                style: context.titleMedium.copyWith(
-                  fontWeight: FontWeight.w600,
-                  overflow: TextOverflow.ellipsis,
+              child: Hero(
+                tag: heroTag,
+                child: Text(
+                  '$icon $header',
+                  style: context.titleMedium.copyWith(
+                    fontWeight: FontWeight.w600,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ),
@@ -71,9 +77,11 @@ class BudgetItem extends StatelessWidget {
                 style: context.titleSmall.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 11.0,
+                  color: Colors.white,
                 ),
               ),
-            )
+            ),
+            const SizedBox(width: Constant.hPadding),
           ],
         ),
         Container(

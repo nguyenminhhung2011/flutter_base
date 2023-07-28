@@ -482,9 +482,7 @@ class _OverviewScreenState extends State<OverviewScreen>
 
   Widget _headerCategoryStyle(
       BuildContext context, CategoryLayoutModel categoryModel) {
-    final isExpense =
-        categories[categoryModel.id]?.categoryType.isExpense ?? false;
-    return Container(
+      return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.symmetric(horizontal: 5.0),

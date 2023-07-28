@@ -260,6 +260,36 @@ class S {
     );
   }
 
+  /// `Empty`
+  String get empty {
+    return Intl.message(
+      'Empty',
+      name: 'empty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Budget limit`
+  String get limit {
+    return Intl.message(
+      'Budget limit',
+      name: 'limit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Budget detail`
+  String get budgetDetail {
+    return Intl.message(
+      'Budget detail',
+      name: 'budgetDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Events`
   String get event {
     return Intl.message(
@@ -290,6 +320,16 @@ class S {
     );
   }
 
+  /// `Transactions`
+  String get transactions {
+    return Intl.message(
+      'Transactions',
+      name: 'transactions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `View`
   String get view {
     return Intl.message(
@@ -305,6 +345,16 @@ class S {
     return Intl.message(
       'Spent',
       name: 'spent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spent per day`
+  String get spentPerDate {
+    return Intl.message(
+      'Spent per day',
+      name: 'spentPerDate',
       desc: '',
       args: [],
     );

@@ -13,11 +13,11 @@ class Constant {
   static List<Map<String, dynamic>> icons = [
     {
       'icon': '🛒',
-      'color':  Colors.blue,
+      'color': Colors.blue,
     },
     {
       'icon': '🍉',
-      'color':  Colors.red,
+      'color': Colors.red,
     },
     {
       'icon': '🏥',
@@ -25,7 +25,13 @@ class Constant {
     },
     {
       'icon': '👪',
-      'color':  Colors.yellow,
+      'color': Colors.yellow,
     },
+  ];
+
+  static List<Map<String, dynamic>> budgetItems = [
+    {'color': Colors.blue, 'header': 'Shopping', 'icon': '🛒'},
+    {'color': '#07AEAF'.toColor(), 'header': 'Health', 'icon': '🏥'},
+    {'color': Colors.yellow, 'header': 'Family', 'icon': '👪'},
   ];
 }

@@ -19,8 +19,8 @@ import '../../../../core/components/widgets/category/category_model.dart';
 import '../../../../core/components/widgets/category/category_type.dart';
 import '../../../../core/components/widgets/money_minder/category_icon.dart';
 
-class _ChartData {
-  _ChartData(this.x, this.y, this.y1);
+class ChartData {
+  ChartData(this.x, this.y, this.y1);
 
   final String x;
   final double y;
@@ -35,7 +35,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late List<_ChartData> data;
+  late List<ChartData> data;
   late TooltipBehavior _tooltip;
   List<CategoryModel> listCategory = <CategoryModel>[
     CategoryModel(
@@ -71,13 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     data = [
-      _ChartData('SUN', 12, 15),
-      _ChartData('MON', 15, 20),
-      _ChartData('TUE', 30, 24),
-      _ChartData('WED', 6.4, 11),
-      _ChartData('THU', 14, 9),
-      _ChartData('FRI', 0, 31),
-      _ChartData('SAT', 0, 10)
+      ChartData('SUN', 12, 15),
+      ChartData('MON', 15, 20),
+      ChartData('TUE', 30, 24),
+      ChartData('WED', 6.4, 11),
+      ChartData('THU', 14, 9),
+      ChartData('FRI', 0, 31),
+      ChartData('SAT', 0, 10)
     ];
     _tooltip = TooltipBehavior(enable: true);
     super.initState();
@@ -239,21 +239,21 @@ class _HomeScreenState extends State<HomeScreen> {
           axisLine: const AxisLine(width: 0.0),
         ),
         tooltipBehavior: _tooltip,
-        series: <ChartSeries<_ChartData, String>>[
-          ColumnSeries<_ChartData, String>(
+        series: <ChartSeries<ChartData, String>>[
+          ColumnSeries<ChartData, String>(
             dataSource: data,
-            xValueMapper: (_ChartData data, _) => data.x,
-            yValueMapper: (_ChartData data, _) => data.y, // max
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y, // max
             name: 'Spend',
             borderRadius: BorderRadius.circular(25.0),
-            pointColorMapper: (_ChartData data, index) => index == 2
+            pointColorMapper: (ChartData data, index) => index == 2
                 ? Theme.of(context).primaryColor
                 : Theme.of(context).dividerColor,
           ),
-          SplineSeries<_ChartData, String>(
+          SplineSeries<ChartData, String>(
             dataSource: data,
-            xValueMapper: (_ChartData data, _) => data.x,
-            yValueMapper: (_ChartData data, _) => data.y1,
+            xValueMapper: (ChartData data, _) => data.x,
+            yValueMapper: (ChartData data, _) => data.y1,
             name: 'Transactions',
             splineType: SplineType.cardinal,
             width: 2,

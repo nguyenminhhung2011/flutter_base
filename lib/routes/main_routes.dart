@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/clean_architectures/presentation/budget_detail/views/budget_detail.dart';
 import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
 import '../clean_architectures/presentation/budget/views/budget_screen.dart';
@@ -22,12 +23,15 @@ class MainRoutes {
         );
       case Routes.budgets:
         return _createRoute(const BudgetScreen(), curvesIn: Curves.linear);
-      //  MaterialPageRoute(
-      //   settings: settings,
-      //   builder: (_) {
-      //     return const BudgetScreen();
-      //   },
-      // );
+      case Routes.budgetDetail:
+        final arguments = settings.arguments;
+        return _createRoute(
+          arguments is int
+              ? BudgetDetail(heroIndex: arguments)
+              : const SizedBox(),
+          curvesIn: Curves.linear,
+          // begin: const Offset(0, 1.0),
+        );
       case Routes.testUi:
         return MaterialPageRoute(
           settings: settings,
@@ -64,13 +68,18 @@ class MainRoutes {
   }
 }
 
-Route _createRoute(Widget widget,
-    {Curve curvesIn = Curves.linear, Tween? tweenC}) {
+Route _createRoute(
+  Widget widget, {
+  Curve curvesIn = Curves.linear,
+  Tween? tweenC,
+  Offset begin = const Offset(1.0, 0.0),
+  Offset end = Offset.zero,
+}) {
   return PageRouteBuilder(
+    transitionDuration: const Duration(milliseconds: 400),
+    reverseTransitionDuration: const Duration(milliseconds: 400),
     pageBuilder: (context, animation, secondaryAnimation) => widget,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.0, 0.0);
-      const end = Offset.zero;
       final curve = curvesIn;
 
       var tween = tweenC?.chain(CurveTween(curve: curve)) ??

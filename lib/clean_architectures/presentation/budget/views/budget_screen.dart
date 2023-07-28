@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/constant.dart';
@@ -5,7 +6,9 @@ import 'package:flutter_base_clean_architecture/core/components/constant/image_c
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
 import 'package:flutter_base_clean_architecture/generated/l10n.dart';
+import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
+import '../../../../core/components/utils/hero_tag.dart';
 import '../../../../core/components/widgets/money_minder/budget_item.dart';
 import '../../../../core/components/widgets/pie_chart.dart';
 
@@ -37,43 +40,43 @@ class _BudgetScreenState extends State<BudgetScreen> {
           style: context.titleLarge.copyWith(fontWeight: FontWeight.w600),
         ),
       ),
-      body: ListView(
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(),
-        ),
+      body: Column(
         children: [
           _headerView(context),
-          const SizedBox(height: 30.0),
-          Row(
-            children: [
-              const SizedBox(width: Constant.hPadding),
-              Text(
-                S.of(context).budgetsCategories,
-                style: context.titleMedium.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
+          Expanded(
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
               ),
-            ],
+              children: [
+                const SizedBox(height: 30.0),
+                Row(
+                  children: [
+                    const SizedBox(width: Constant.hPadding),
+                    Text(
+                      S.of(context).budgetsCategories,
+                      style: context.titleMedium.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                ...Constant.budgetItems.mapIndexed((index, e) => BudgetItem(
+                      color: e['color'] as Color,
+                      header: e['header'].toString(),
+                      timeStart: Constant.timeNow,
+                      timeEnd: Constant.timeNow.add(const Duration(days: 1)),
+                      icon: e['icon'].toString(),
+                      expense: 10000,
+                      budget: 40000,
+                      heroTag: '${HeroTag.budgetItemTag} $index',
+                      viewDetail: () => context.openPageWithRouteAndParams(
+                          Routes.budgetDetail, index),
+                    )),
+              ],
+            ),
           ),
-          const SizedBox(height: 10.0),
-          ...<Map<String, dynamic>>[
-            {'color': Colors.blue, 'header': 'Shopping', 'icon': '🛒'},
-            {
-              'color': Theme.of(context).primaryColor,
-              'header': 'Health',
-              'icon': '🏥'
-            },
-            {'color': Colors.yellow, 'header': 'Family', 'icon': '👪'},
-          ].map((e) => BudgetItem(
-                color: e['color'] as Color,
-                header: e['header'].toString(),
-                timeStart: Constant.timeNow,
-                timeEnd: Constant.timeNow.add(const Duration(days: 1)),
-                icon: e['icon'].toString(),
-                expense: 10000,
-                budget: 40000,
-                viewDetail: (){},
-              )),
         ],
       ),
     );
