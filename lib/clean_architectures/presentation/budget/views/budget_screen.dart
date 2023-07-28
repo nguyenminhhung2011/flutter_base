@@ -42,31 +42,8 @@ class _BudgetScreenState extends State<BudgetScreen> {
           parent: BouncingScrollPhysics(),
         ),
         children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 170,
-                child: Image.asset(ImageConst.budget, fit: BoxFit.cover),
-              ),
-              Container(
-                width: double.infinity,
-                height: 170,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  colors: [
-                    Theme.of(context).shadowColor.withOpacity(0.8),
-                    Theme.of(context).shadowColor.withOpacity(0.8),
-                    Theme.of(context).shadowColor.withOpacity(0.8),
-                  ],
-                )),
-              ),
-              SizedBox(
-                height: 170.0,
-                child: _overviewField(context),
-              ),
-            ],
-          ),
+          _headerView(context),
+          const SizedBox(height: 30.0),
           Row(
             children: [
               const SizedBox(width: Constant.hPadding),
@@ -76,49 +53,81 @@ class _BudgetScreenState extends State<BudgetScreen> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const Spacer(),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  S.of(context).add,
-                  style: context.titleSmall.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              )
             ],
           ),
-          // _budget(context),
-          BudgetItem(
-            color: Colors.blue,
-            header: 'Shopping',
-            timeStart: Constant.timeNow,
-            timeEnd: Constant.timeNow.add(const Duration(days: 1)),
-            icon: '🛒',
-            expense: 100000,
-            budget: 400000,
-          ),
-          BudgetItem(
-            color: Theme.of(context).primaryColor,
-            header: 'Health',
-            timeStart: Constant.timeNow,
-            timeEnd: Constant.timeNow.add(const Duration(days: 1)),
-            icon: '🏥',
-            expense: 200000,
-            budget: 400000,
-          ),
-          BudgetItem(
-            color: Colors.yellow,
-            header: 'Family',
-            timeStart: Constant.timeNow,
-            timeEnd: Constant.timeNow.add(const Duration(days: 1)),
-            icon: '👪',
-            expense: 100000,
-            budget: 400000,
-          ),
+          const SizedBox(height: 10.0),
+          ...<Map<String, dynamic>>[
+            {'color': Colors.blue, 'header': 'Shopping', 'icon': '🛒'},
+            {
+              'color': Theme.of(context).primaryColor,
+              'header': 'Health',
+              'icon': '🏥'
+            },
+            {'color': Colors.yellow, 'header': 'Family', 'icon': '👪'},
+          ].map((e) => BudgetItem(
+                color: e['color'] as Color,
+                header: e['header'].toString(),
+                timeStart: Constant.timeNow,
+                timeEnd: Constant.timeNow.add(const Duration(days: 1)),
+                icon: e['icon'].toString(),
+                expense: 10000,
+                budget: 40000,
+                viewDetail: (){},
+              )),
         ],
       ),
+    );
+  }
+
+  Stack _headerView(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        SizedBox(
+          width: double.infinity,
+          height: 170,
+          child: Image.asset(ImageConst.budget, fit: BoxFit.cover),
+        ),
+        Container(
+          width: double.infinity,
+          height: 170,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            colors: [
+              Theme.of(context).shadowColor.withOpacity(0.7),
+              Theme.of(context).shadowColor.withOpacity(0.7),
+              Theme.of(context).shadowColor.withOpacity(0.7),
+            ],
+          )),
+        ),
+        SizedBox(
+          height: 170.0,
+          child: _overviewField(context),
+        ),
+        Positioned(
+          left: 30.0,
+          top: 145.0,
+          child: InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(50),
+            child: Container(
+              width: 50.0,
+              height: 50.0,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Theme.of(context).shadowColor.withOpacity(0.2),
+                    blurRadius: 5.0,
+                  )
+                ],
+              ),
+              child: const Icon(Icons.add, color: Colors.white),
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -137,14 +146,14 @@ class _BudgetScreenState extends State<BudgetScreen> {
                 style: context.titleLarge.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
-                  color: Colors.white, 
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 10.0),
               RichText(
                 text: TextSpan(
                   style: context.titleSmall.copyWith(
-                    color: Colors.white,
+                    color: Colors.grey[300],
                   ),
                   children: [
                     TextSpan(text: S.of(context).remainingAtThisMonth),
@@ -161,13 +170,16 @@ class _BudgetScreenState extends State<BudgetScreen> {
               const SizedBox(height: 5.0),
               RichText(
                 text: TextSpan(
-                  style: context.titleSmall.copyWith(color: Colors.white),
+                  style: context.titleSmall.copyWith(
+                    color: Colors.grey[300],
+                  ),
                   children: [
                     TextSpan(text: S.of(context).spent),
                     TextSpan(
                       text: ' ${100000.price}',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     TextSpan(text: ' of ${203000.price}')
