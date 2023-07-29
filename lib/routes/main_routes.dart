@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/clean_architectures/presentation/bill/views/bills_screen.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/budget_detail/views/budget_detail.dart';
 import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
@@ -23,6 +24,8 @@ class MainRoutes {
         );
       case Routes.budgets:
         return _createRoute(const BudgetScreen(), curvesIn: Curves.linear);
+      case Routes.bills:
+        return _createRoute(const BillScreen(), curvesIn: Curves.linear);
       case Routes.budgetDetail:
         final arguments = settings.arguments;
         return _createRoute(

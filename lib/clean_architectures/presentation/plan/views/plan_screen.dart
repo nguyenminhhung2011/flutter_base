@@ -74,6 +74,9 @@ class _PlanScreenState extends State<PlanScreen> {
               switch (index) {
                 case 0:
                   context.openListPageWithRoute(Routes.budgets);
+                case 2:
+                  context.openListPageWithRoute(Routes.bills);
+                
               }
             }),
           ),

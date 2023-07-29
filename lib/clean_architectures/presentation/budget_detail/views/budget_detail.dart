@@ -78,7 +78,7 @@ class _BudgetDetailState extends State<BudgetDetail> {
           _headerField(backgroundColor, context, budgetItem),
           const SizedBox(height: 30.0),
           SizedBox(
-            height: 250,
+            height: 200,
             width: double.infinity,
             child: LineChartCustom(
               isShowingMainData: false,
@@ -107,7 +107,7 @@ class _BudgetDetailState extends State<BudgetDetail> {
               .map(
                 (e) => Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: Constant.hPadding),
+                      const EdgeInsets.symmetric(horizontal: Constant.hPadding * 2),
                   child: Row(
                     children: [
                       Container(
@@ -174,8 +174,8 @@ class _BudgetDetailState extends State<BudgetDetail> {
         border: Border.all(width: 1, color: Theme.of(context).dividerColor),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).shadowColor.withOpacity(0.15),
-            blurRadius: 5.0,
+            color: context.titleLarge.color!.withOpacity(0.3),
+            blurRadius: 10.0,
           )
         ],
       ),

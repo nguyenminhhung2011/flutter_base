@@ -482,7 +482,7 @@ class _OverviewScreenState extends State<OverviewScreen>
 
   Widget _headerCategoryStyle(
       BuildContext context, CategoryLayoutModel categoryModel) {
-      return Container(
+    return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -527,8 +527,6 @@ class _OverviewScreenState extends State<OverviewScreen>
               ),
             ),
           ),
-         
-         
           InkWell(
             onTap: () {},
             child: Text(

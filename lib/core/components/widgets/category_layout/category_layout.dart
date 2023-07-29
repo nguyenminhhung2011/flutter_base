@@ -152,13 +152,13 @@ class CategoryLayoutView<T> extends StatefulWidget {
     this.unselectedTextStyle,
     this.itemCategoryBuilder,
     this.paginationDataCall,
-    required this.itemBuilder,
-    required this.categoryLayoutModel,
     this.scrollFormat = const ScrollFormat(),
     this.topCategoryStyle = const TopCategoryStyle(),
     this.bothCategoryStyle = const BothCategoryStyle(),
     this.categoryLayoutType = CategoryLayoutType.autoScroll,
     this.autoScrollCategoryStyle = const AutoScrollCategoryStyle(),
+    required this.itemBuilder,
+    required this.categoryLayoutModel,
   });
 
   @override

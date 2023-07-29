@@ -4,4 +4,5 @@ class Routes {
   static const String dashboard= '/dashboard';
   static const String budgets= '/budgets';
   static const String budgetDetail = '/budget_detail';
+  static const String bills = '/bills';
 }

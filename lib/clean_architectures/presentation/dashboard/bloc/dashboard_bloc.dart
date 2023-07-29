@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/home/views/home_screen.dart';
