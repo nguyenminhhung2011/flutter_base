@@ -300,6 +300,16 @@ class S {
     );
   }
 
+  /// `People`
+  String get people {
+    return Intl.message(
+      'People',
+      name: 'people',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Total bills`
   String get totalBills {
     return Intl.message(
@@ -405,6 +415,26 @@ class S {
     return Intl.message(
       'View',
       name: 'view',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Split Bill`
+  String get splitBill {
+    return Intl.message(
+      'Split Bill',
+      name: 'splitBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Split Detail`
+  String get splitDetail {
+    return Intl.message(
+      'Split Detail',
+      name: 'splitDetail',
       desc: '',
       args: [],
     );

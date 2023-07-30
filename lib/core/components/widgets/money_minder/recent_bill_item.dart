@@ -1,10 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/image_const.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/button_custom.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/money_minder/category_icon.dart';
+import 'package:flutter_base_clean_architecture/routes/routes.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../generated/l10n.dart';
@@ -91,7 +93,7 @@ class _RecentBillItemState extends State<RecentBillItem> {
 
   ButtonCustom _buttonBill(BuildContext context) {
     return ButtonCustom(
-      onPress: () {},
+      onPress: () => context.openListPageWithRoute(Routes.billDetail),
       height: 38.0,
       radius: 7.0,
       child: Text(S.of(context).splitNow, style: context.titleSmall),

@@ -10,19 +10,26 @@ extension ContextExtension on BuildContext {
 
   TextStyle get headerStyle => Theme.of(this).textTheme.titleSmall!.copyWith(
         fontWeight: FontWeight.w400,
+        fontFamily: 'Montserrat',
       );
   TextStyle get timeStyle => Theme.of(this).textTheme.titleMedium!.copyWith(
         fontWeight: FontWeight.bold,
+        fontFamily: 'Montserrat',
       );
   TextStyle get textStyle => Theme.of(this).textTheme.titleMedium!.copyWith(
         fontWeight: FontWeight.w600,
         color: Theme.of(this).primaryColor,
+        fontFamily: 'Montserrat',
       );
-  TextStyle get subTextStyle => textStyle.copyWith(fontWeight: FontWeight.w400);
+  TextStyle get subTextStyle => textStyle.copyWith(
+        fontWeight: FontWeight.w400,
+        fontFamily: 'Montserrat',
+      );
 
   TextStyle get primaryMediumText =>
       Theme.of(this).textTheme.titleMedium!.copyWith(
             color: Theme.of(this).primaryColor,
+            fontFamily: 'Montserrat',
             fontWeight: FontWeight.w600,
           );
 
@@ -53,6 +60,7 @@ extension ContextExtension on BuildContext {
       Theme.of(this).textTheme.titleMedium!.copyWith(
             fontWeight: FontWeight.bold,
             color: Theme.of(this).scaffoldBackgroundColor,
+            fontFamily: 'Montserrat',
           );
 
   TextStyle get bodyMedium => Theme.of(this).textTheme.bodyMedium!.copyWith(

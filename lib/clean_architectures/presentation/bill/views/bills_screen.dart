@@ -7,6 +7,7 @@ import 'package:flutter_base_clean_architecture/core/components/extensions/conte
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/header_custom.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/money_minder/category_icon.dart';
+import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
 import '../../../../core/components/widgets/money_minder/recent_bill_item.dart';
 import '../../../../generated/l10n.dart';
@@ -159,51 +160,54 @@ class _BillScreenState extends State<BillScreen> {
     );
   }
 
-  Row _recentBilling(BuildContext context, Color backgroundColor) {
-    return Row(
-      children: [
-        const SizedBox(width: 15.0),
-        InkWell(
-          onTap: () {},
-          borderRadius: BorderRadius.circular(10.0),
-          child: Container(
-            height: 280.0,
-            width: 70,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              border:
-                  Border.all(width: 1, color: Theme.of(context).primaryColor),
-              color: backgroundColor,
-            ),
-            child: Center(
-              child: RotatedBox(
-                quarterTurns: -1,
-                child: Text(
-                  S.of(context).addNewBill,
-                  style: context.titleMedium,
+  Widget _recentBilling(BuildContext context, Color backgroundColor) {
+    return InkWell(
+      onTap: () => context.openListPageWithRoute(Routes.billDetail),
+      child: Row(
+        children: [
+          const SizedBox(width: 15.0),
+          InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(10.0),
+            child: Container(
+              height: 280.0,
+              width: 70,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                border:
+                    Border.all(width: 1, color: Theme.of(context).primaryColor),
+                color: backgroundColor,
+              ),
+              child: Center(
+                child: RotatedBox(
+                  quarterTurns: -1,
+                  child: Text(
+                    S.of(context).addNewBill,
+                    style: context.titleMedium,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: SizedBox(
-            width: double.infinity,
-            height: 290.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: const [
-                SizedBox(width: 10.0),
-                RecentBillItem(),
-                RecentBillItem(),
-                RecentBillItem(),
-              ]
-                  .expand((element) => [element, const SizedBox(width: 10.0)])
-                  .toList(),
+          Expanded(
+            child: SizedBox(
+              width: double.infinity,
+              height: 290.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: const [
+                  SizedBox(width: 10.0),
+                  RecentBillItem(),
+                  RecentBillItem(),
+                  RecentBillItem(),
+                ]
+                    .expand((element) => [element, const SizedBox(width: 10.0)])
+                    .toList(),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
@@ -228,12 +232,14 @@ class _BillScreenState extends State<BillScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 15),
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              for (int i = 0; i < 3; i++)
-                Theme.of(context).shadowColor.withOpacity(0.7),
-            ],
-          )),
+            gradient: LinearGradient(
+              colors: [
+                for (int i = 0; i < 3; i++)
+                  Theme.of(context).shadowColor.withOpacity(0.7),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(10.0)
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

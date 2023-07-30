@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "of1": MessageLookupByLibrary.simpleMessage("of"),
         "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
+        "people": MessageLookupByLibrary.simpleMessage("People"),
         "planning": MessageLookupByLibrary.simpleMessage("Planning"),
         "recentActivity":
             MessageLookupByLibrary.simpleMessage("Recent activity"),
@@ -64,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "spent": MessageLookupByLibrary.simpleMessage("Spent"),
         "spentPerDate": MessageLookupByLibrary.simpleMessage("Spent per day"),
+        "splitBill": MessageLookupByLibrary.simpleMessage("Split Bill"),
+        "splitDetail": MessageLookupByLibrary.simpleMessage("Split Detail"),
         "splitNow": MessageLookupByLibrary.simpleMessage("Split now"),
         "splitWith": MessageLookupByLibrary.simpleMessage("Split with"),
         "summary": MessageLookupByLibrary.simpleMessage("Summary"),

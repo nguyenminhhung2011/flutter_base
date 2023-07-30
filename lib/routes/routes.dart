@@ -5,4 +5,5 @@ class Routes {
   static const String budgets= '/budgets';
   static const String budgetDetail = '/budget_detail';
   static const String bills = '/bills';
+  static const String billDetail = '/bill_detail';
 }
