@@ -240,11 +240,51 @@ class S {
     );
   }
 
+  /// `Recent billing`
+  String get recentBilling {
+    return Intl.message(
+      'Recent billing',
+      name: 'recentBilling',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent activity`
+  String get recentActivity {
+    return Intl.message(
+      'Recent activity',
+      name: 'recentActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new bill`
+  String get addNewBill {
+    return Intl.message(
+      'Add new bill',
+      name: 'addNewBill',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `All`
   String get all {
     return Intl.message(
       'All',
       name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Split now`
+  String get splitNow {
+    return Intl.message(
+      'Split now',
+      name: 'splitNow',
       desc: '',
       args: [],
     );
@@ -260,6 +300,16 @@ class S {
     );
   }
 
+  /// `Total bills`
+  String get totalBills {
+    return Intl.message(
+      'Total bills',
+      name: 'totalBills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Empty`
   String get empty {
     return Intl.message(
@@ -267,6 +317,26 @@ class S {
       name: 'empty',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Split with`
+  String get splitWith {
+    return Intl.message(
+      'Split with',
+      name: 'splitWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{no} peoples`
+  String noPeoples(Object no) {
+    return Intl.message(
+      '$no peoples',
+      name: 'noPeoples',
+      desc: '',
+      args: [no],
     );
   }
 
@@ -340,6 +410,16 @@ class S {
     );
   }
 
+  /// `View all`
+  String get viewAll {
+    return Intl.message(
+      'View all',
+      name: 'viewAll',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Spent`
   String get spent {
     return Intl.message(
@@ -355,6 +435,16 @@ class S {
     return Intl.message(
       'Spent per day',
       name: 'spentPerDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Balance`
+  String get yourBalance {
+    return Intl.message(
+      'Your Balance',
+      name: 'yourBalance',
       desc: '',
       args: [],
     );

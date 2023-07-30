@@ -20,9 +20,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(no) => "${no} peoples";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("add"),
+        "addNewBill": MessageLookupByLibrary.simpleMessage("Add new bill"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
@@ -44,10 +47,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "limit": MessageLookupByLibrary.simpleMessage("Budget limit"),
         "nextMonth": MessageLookupByLibrary.simpleMessage("Next month"),
         "nextYear": MessageLookupByLibrary.simpleMessage("Next year"),
+        "noPeoples": m0,
         "of1": MessageLookupByLibrary.simpleMessage("of"),
         "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
         "planning": MessageLookupByLibrary.simpleMessage("Planning"),
+        "recentActivity":
+            MessageLookupByLibrary.simpleMessage("Recent activity"),
+        "recentBilling": MessageLookupByLibrary.simpleMessage("Recent billing"),
         "recentSpend": MessageLookupByLibrary.simpleMessage("Recent spend"),
         "recurring": MessageLookupByLibrary.simpleMessage("Recurring"),
         "remainingAtThisMonth":
@@ -57,14 +64,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "spent": MessageLookupByLibrary.simpleMessage("Spent"),
         "spentPerDate": MessageLookupByLibrary.simpleMessage("Spent per day"),
+        "splitNow": MessageLookupByLibrary.simpleMessage("Split now"),
+        "splitWith": MessageLookupByLibrary.simpleMessage("Split with"),
         "summary": MessageLookupByLibrary.simpleMessage("Summary"),
         "thisMonth": MessageLookupByLibrary.simpleMessage("This month"),
         "thisYear": MessageLookupByLibrary.simpleMessage("This year"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
+        "totalBills": MessageLookupByLibrary.simpleMessage("Total bills"),
         "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
         "update": MessageLookupByLibrary.simpleMessage("update"),
         "view": MessageLookupByLibrary.simpleMessage("View"),
-        "viewReport": MessageLookupByLibrary.simpleMessage("View report")
+        "viewAll": MessageLookupByLibrary.simpleMessage("View all"),
+        "viewReport": MessageLookupByLibrary.simpleMessage("View report"),
+        "yourBalance": MessageLookupByLibrary.simpleMessage("Your Balance")
       };
 }
