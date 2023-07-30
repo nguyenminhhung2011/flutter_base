@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
         "budgetsCategories":
             MessageLookupByLibrary.simpleMessage("Budget categories"),
+        "byPrice": MessageLookupByLibrary.simpleMessage("By Price"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
@@ -53,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remaining at this month"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
+        "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "spent": MessageLookupByLibrary.simpleMessage("Spent"),
         "spentPerDate": MessageLookupByLibrary.simpleMessage("Spent per day"),
         "summary": MessageLookupByLibrary.simpleMessage("Summary"),

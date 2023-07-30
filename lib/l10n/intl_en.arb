@@ -37,5 +37,7 @@
     "viewReport": "View report",
     "lendLoan": "Lend & loan",
     "anotherFeature": "Another features",
-    "category": "Category"
+    "category": "Category",
+    "sortBy": "Sort By",
+    "byPrice": "By Price"
 }
