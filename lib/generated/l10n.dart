@@ -280,11 +280,31 @@ class S {
     );
   }
 
+  /// `Bill Detail`
+  String get billDetail {
+    return Intl.message(
+      'Bill Detail',
+      name: 'billDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Split now`
   String get splitNow {
     return Intl.message(
       'Split now',
       name: 'splitNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Bill`
+  String get sendBill {
+    return Intl.message(
+      'Send Bill',
+      name: 'sendBill',
       desc: '',
       args: [],
     );

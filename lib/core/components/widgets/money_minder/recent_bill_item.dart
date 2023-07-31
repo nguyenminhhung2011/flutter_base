@@ -96,7 +96,10 @@ class _RecentBillItemState extends State<RecentBillItem> {
       onPress: () => context.openListPageWithRoute(Routes.billDetail),
       height: 38.0,
       radius: 7.0,
-      child: Text(S.of(context).splitNow, style: context.titleSmall),
+      child: Text(
+        S.of(context).splitNow,
+        style: context.titleSmall.copyWith(color: Colors.white),
+      ),
     );
   }
 

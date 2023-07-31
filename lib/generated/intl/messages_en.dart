@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
         "bill": MessageLookupByLibrary.simpleMessage("Bills"),
+        "billDetail": MessageLookupByLibrary.simpleMessage("Bill Detail"),
         "budget": MessageLookupByLibrary.simpleMessage("Budgets"),
         "budgetDetail": MessageLookupByLibrary.simpleMessage("Budget detail"),
         "budgets": MessageLookupByLibrary.simpleMessage("Budgets"),
@@ -62,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Remaining at this month"),
         "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
+        "sendBill": MessageLookupByLibrary.simpleMessage("Send Bill"),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "spent": MessageLookupByLibrary.simpleMessage("Spent"),
         "spentPerDate": MessageLookupByLibrary.simpleMessage("Spent per day"),
