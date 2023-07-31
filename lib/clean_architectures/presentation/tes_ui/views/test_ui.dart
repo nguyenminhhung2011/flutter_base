@@ -7,6 +7,7 @@ import 'package:flutter_base_clean_architecture/core/components/extensions/strin
 import 'package:flutter_base_clean_architecture/core/components/widgets/category/category_model.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/category_layout/category_layout.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/category_layout/category_layout_type.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/pagination_view/pagination_list_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/popup_button_custom.dart';
@@ -56,7 +57,11 @@ class _TestUiState extends State<TestUi> {
       title: 'Search',
       screen: const PageTest2(),
     ),
-    TabBarModel(svgAsset: ImageConst.documentIcon, title: 'Favorite'),
+    TabBarModel(
+      svgAsset: ImageConst.documentIcon,
+      title: 'Favorite',
+      screen: const PageTest3(),
+    ),
     TabBarModel(svgAsset: ImageConst.personIcon, title: 'Profile')
   ];
 
@@ -127,6 +132,77 @@ class _TestUiState extends State<TestUi> {
           );
         },
       ),
+    );
+  }
+}
+
+class PageTest3 extends StatefulWidget {
+  const PageTest3({super.key});
+
+  @override
+  State<PageTest3> createState() => _PageTest3State();
+}
+
+class _PageTest3State extends State<PageTest3> {
+  List<ModelTest> items = [
+    ...[0, 1, 2, 3, 4].map(
+      (e) => ModelTest(userName: 'Min hun $e', bio: 'Minh Hung socute'),
+    )
+  ];
+
+  Future<List<ModelImageTest>> load(int index) async {
+    await Future.delayed(const Duration(seconds: 3));
+    return <ModelImageTest>[
+      for (int i = 0; i < 3; i++)
+        ModelImageTest(
+          imageUrl:
+              'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
+          title: 'Id t${items[index].userName}',
+          subTitle: 'This is product',
+        ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        ExpansionPanelCustom<ModelTest, List<ModelImageTest>>(
+          parentItems: items,
+          parentItemBuilder: (_, data, isExpanded) => Container(
+            width: double.infinity,
+            // decoration: BoxDecoration(
+            //   color: Colors.red,
+            // ),
+            child: ListTile(
+              title: Text(data.userName),
+              subtitle: Text(data.bio),
+            ),
+          ),
+          expandPanelColor: Theme.of(context).scaffoldBackgroundColor,
+          expandedHeaderPadding: const EdgeInsets.symmetric(vertical: 0.0),
+          bodyItem: (_, items) => Column(
+            children: [
+              ...items.map(
+                (e) => Container(
+                  height: 100,
+                  width: double.infinity,
+                  margin: const EdgeInsets.symmetric(vertical: 5.0),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(e.imageUrl),
+                    ),
+                  ),
+                  child: Text(e.title, style: context.titleLarge),
+                ),
+              )
+            ],
+          ),
+          loadBody: load,
+        )
+      ],
     );
   }
 }
