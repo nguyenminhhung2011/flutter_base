@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/constant.dart';
 
-import 'core/components/widgets/range_date_picker_custom.dart';
+import '../../widgets/range_date_picker_custom.dart';
 
 extension AppCoordinator<T> on BuildContext {
   void pop() => Navigator.of(this).pop();

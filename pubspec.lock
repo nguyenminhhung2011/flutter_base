@@ -97,6 +97,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.3"
+  beamer:
+    dependency: "direct main"
+    description:
+      name: beamer
+      sha256: "1bd43904b62f322eb40aaa47aac463d7d6dd300cdfb8c71401105362c4501f43"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.6"
   bidi:
     dependency: transitive
     description:
