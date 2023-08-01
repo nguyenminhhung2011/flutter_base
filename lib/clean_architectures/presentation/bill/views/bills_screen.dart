@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/constant.dart';
-import 'package:flutter_base_clean_architecture/core/components/constant/handle_time.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/image_const.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/header_custom.dart';
-import 'package:flutter_base_clean_architecture/core/components/widgets/money_minder/category_icon.dart';
 import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
+import '../../../../core/components/widgets/money_minder/recent_activity.dart';
 import '../../../../core/components/widgets/money_minder/recent_bill_item.dart';
 import '../../../../generated/l10n.dart';
 
@@ -60,15 +59,12 @@ class _BillScreenState extends State<BillScreen> {
                   onActionPress: () {}),
               ...<int>[0, 1, 2, 3]
                   .map<Widget>(
-                    (e) => _recentActivity(
-                      e,
-                      context,
-                      header: 'This is test',
-                      timeCreated: DateTime.now(),
-                      price: 1231000,
-                      icon: Constant.icons[e]['icon'].toString(),
-                      borderColor: Constant.icons[e]['color'] as Color,
-                    ),
+                    (e) => RecentActivity(
+                        header: 'This is test',
+                        timeCreated: DateTime.now(),
+                        price: 1231000,
+                        icon: Constant.icons[e]['icon'].toString(),
+                        borderColor: Constant.icons[e]['color'] as Color),
                   )
                   .expand(
                     (element) => [element, const Divider(thickness: 0.6)],
@@ -79,59 +75,6 @@ class _BillScreenState extends State<BillScreen> {
           ),
         )
       ]),
-    );
-  }
-
-  Padding _recentActivity(
-    int e,
-    BuildContext context, {
-    required String header,
-    required DateTime timeCreated,
-    required int price,
-    required String icon,
-    required Color borderColor,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-      child: Row(
-        children: [
-          CategoryIcon(
-            color: borderColor,
-            icon: icon,
-            radius: 40.0,
-            iconSize: 16.0,
-          ),
-          const SizedBox(width: 20.0),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  header,
-                  style: context.titleMedium.copyWith(
-                    fontWeight: FontWeight.w600,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Text(
-                  '${getYmdFormat(timeCreated)} | ${getjmFormat(timeCreated)}',
-                  style: context.titleSmall.copyWith(
-                    color: Theme.of(context).hintColor,
-                    fontSize: 11.0,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Text(
-            price.price,
-            style: context.titleMedium.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          )
-        ],
-      ),
     );
   }
 
@@ -153,6 +96,7 @@ class _BillScreenState extends State<BillScreen> {
           actionString,
           style: context.titleSmall.copyWith(
             fontWeight: FontWeight.bold,
+            fontSize: 12.0,
             color: Theme.of(context).primaryColor,
           ),
         ),
@@ -232,14 +176,13 @@ class _BillScreenState extends State<BillScreen> {
           margin: const EdgeInsets.symmetric(horizontal: 15),
           padding: const EdgeInsets.all(20.0),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                for (int i = 0; i < 3; i++)
-                  Theme.of(context).shadowColor.withOpacity(0.7),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(10.0)
-          ),
+              gradient: LinearGradient(
+                colors: [
+                  for (int i = 0; i < 3; i++)
+                    Theme.of(context).shadowColor.withOpacity(0.7),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(10.0)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

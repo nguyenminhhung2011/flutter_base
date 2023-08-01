@@ -280,6 +280,16 @@ class S {
     );
   }
 
+  /// `Price`
+  String get price {
+    return Intl.message(
+      'Price',
+      name: 'price',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Bill Detail`
   String get billDetail {
     return Intl.message(
@@ -320,11 +330,71 @@ class S {
     );
   }
 
+  /// `Start`
+  String get start {
+    return Intl.message(
+      'Start',
+      name: 'start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End`
+  String get end {
+    return Intl.message(
+      'End',
+      name: 'end',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nearest transactions`
+  String get nearestTransaction {
+    return Intl.message(
+      'Nearest transactions',
+      name: 'nearestTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `select`
+  String get select {
+    return Intl.message(
+      'select',
+      name: 'select',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discover Awesome Events!`
+  String get discoverEvents {
+    return Intl.message(
+      'Discover Awesome Events!',
+      name: 'discoverEvents',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `People`
   String get people {
     return Intl.message(
       'People',
       name: 'people',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current events`
+  String get currentEvent {
+    return Intl.message(
+      'Current events',
+      name: 'currentEvent',
       desc: '',
       args: [],
     );
