@@ -25,8 +25,6 @@ class MainRoutes {
             return const TestUi();
           },
         );
-
-
       default:
         return unDefinedRoute();
     }
