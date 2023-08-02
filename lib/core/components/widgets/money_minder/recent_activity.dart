@@ -1,4 +1,3 @@
-  
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
@@ -14,6 +13,7 @@ class RecentActivity extends StatelessWidget {
     required this.price,
     required this.icon,
     required this.borderColor,
+    this.padding,
   });
 
   final String header;
@@ -21,11 +21,13 @@ class RecentActivity extends StatelessWidget {
   final int price;
   final String icon;
   final Color borderColor;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+      padding: padding ??
+          const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
       child: Row(
         children: [
           CategoryIcon(

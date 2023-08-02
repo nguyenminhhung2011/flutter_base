@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/constant.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
+import 'package:flutter_base_clean_architecture/core/components/utils/hero_tag.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/header_custom.dart';
 import 'package:flutter_base_clean_architecture/generated/l10n.dart';
 
@@ -29,6 +30,20 @@ class _EventsSCreenState extends State<EventsSCreen> {
     final backgroundColor = Theme.of(context).scaffoldBackgroundColor;
     return Scaffold(
       backgroundColor: backgroundColor,
+      floatingActionButton: Hero(
+        tag: HeroTag.buttonAddEventTag,
+        child: GestureDetector(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(Icons.add, color: Colors.white, size: 23.0),
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: backgroundColor,
         elevation: 0,

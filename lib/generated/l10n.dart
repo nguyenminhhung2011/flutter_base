@@ -350,6 +350,16 @@ class S {
     );
   }
 
+  /// `Add transaction`
+  String get addTransactions {
+    return Intl.message(
+      'Add transaction',
+      name: 'addTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Nearest transactions`
   String get nearestTransaction {
     return Intl.message(
@@ -420,6 +430,16 @@ class S {
     );
   }
 
+  /// `Event detail`
+  String get eventDetail {
+    return Intl.message(
+      'Event detail',
+      name: 'eventDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Split with`
   String get splitWith {
     return Intl.message(
@@ -465,6 +485,16 @@ class S {
     return Intl.message(
       'Events',
       name: 'event',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
       desc: '',
       args: [],
     );

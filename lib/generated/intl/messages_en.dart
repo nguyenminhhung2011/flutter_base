@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("add"),
         "addNewBill": MessageLookupByLibrary.simpleMessage("Add new bill"),
+        "addTransactions":
+            MessageLookupByLibrary.simpleMessage("Add transaction"),
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
@@ -40,11 +42,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "currentEvent": MessageLookupByLibrary.simpleMessage("Current events"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "discoverEvents":
             MessageLookupByLibrary.simpleMessage("Discover Awesome Events!"),
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "end": MessageLookupByLibrary.simpleMessage("End"),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
+        "eventDetail": MessageLookupByLibrary.simpleMessage("Event detail"),
         "expenseMoney": MessageLookupByLibrary.simpleMessage("Expense money"),
         "inFlow": MessageLookupByLibrary.simpleMessage("InFlow"),
         "incomeMoney": MessageLookupByLibrary.simpleMessage("Income money"),

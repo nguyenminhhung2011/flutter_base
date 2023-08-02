@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/app_coordinator.dart';
 import 'package:flutter_base_clean_architecture/core/components/constant/handle_time.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/int_extension.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/button_custom.dart';
 import 'package:flutter_base_clean_architecture/generated/l10n.dart';
+
+import '../../../../routes/routes.dart';
 
 class EventViewItem extends StatelessWidget {
   final DateTime startTime;
@@ -99,7 +102,8 @@ class EventViewItem extends StatelessWidget {
                 ),
               ),
               ButtonCustom(
-                onPress: () {},
+                onPress: () =>
+                    context.openListPageWithRoute(Routes.eventDetail),
                 radius: 5.0,
                 enableWidth: false,
                 child: Text(S.of(context).select),
