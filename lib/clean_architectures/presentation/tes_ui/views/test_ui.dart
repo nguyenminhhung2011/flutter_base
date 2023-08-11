@@ -12,15 +12,17 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/image_st
 import 'package:flutter_base_clean_architecture/core/components/widgets/pagination_view/pagination_list_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/popup_button_custom.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/tab_bar/tab_bar_model.dart';
-import 'package:flutter_base_clean_architecture/core/components/widgets/tree_view_custom/node/node_model.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/tree_view_custom/tree_view.dart';
 import '../../../../core/components/constant/image_const.dart';
 import '../../../../core/components/widgets/banner/banner_slider.dart';
 import '../../../../core/components/widgets/category/category_custom.dart';
 import '../../../../core/components/widgets/category/category_type.dart';
-import '../../../../core/components/widgets/header_search/header_search.dart';
+import '../../../../core/components/widgets/search_layout/header_search/header_search.dart';
+import '../../../../core/components/widgets/search_layout/model/filter_model.dart';
+import '../../../../core/components/widgets/search_layout/views/search_layou.dart';
 import '../../../../core/components/widgets/tab_bar/tab_bar_type.dart';
 import '../../../../core/components/widgets/tab_bar/tabbar_custom.dart';
+import '../../../../generated/l10n.dart';
 
 class ModelTest {
   final String userName;
@@ -67,47 +69,17 @@ class _TestUiState extends State<TestUi> {
     TabBarModel(
       svgAsset: ImageConst.personIcon,
       title: 'Profile',
-      screen: const PageTest4(),
+      screen: const PageTest5(),
     )
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Test ui'),
-        actions: [
-          PopUpButtonCustom<String>(
-            onSelected: (value) {},
-            itemBuilder: (_) {
-              return [
-                PopupMenuItem<String>(
-                  value: 'Hung',
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.person,
-                        color: Colors.black,
-                      ),
-                      const SizedBox(width: 5.0),
-                      Text('Hungssdfsfsdfsd',
-                          style: context.titleSmall.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ))
-                    ],
-                  ),
-                ),
-              ];
-            },
-            icon: const Icon(Icons.more_vert),
-          )
-        ],
-      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: TabBarCustom(
         radius: 15,
-        elevation: 0.2, // => elevation
+        elevation: 0.1, // => elevation
         tabBarType: TabBarType
             .dotTabBar, //if you want display test change to textTabBar
         // tabBarColor: Colors.black,
@@ -137,6 +109,59 @@ class _TestUiState extends State<TestUi> {
             children: dashboardItem.map((e) => e.screen).toList(),
           );
         },
+      ),
+    );
+  }
+}
+
+class PageTest5 extends StatelessWidget {
+  const PageTest5({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SearchLayout<ModelTest>(
+      searchCall: (text, filters) async => [],
+      itemBuilder: (_, data) {
+        return const Row(children: []);
+      },
+      groupHeaderStyle: GroupHeaderStyle(
+        contentHeaderSearchPadding: const EdgeInsets.all(10.0),
+        listFilter: [
+          PriceModel(
+            header: 'By price',
+            maxPrice: 10000,
+            minPrice: 0.0,
+          ),
+          PriceModel(
+            header: 'By Sale',
+            maxPrice: 10000,
+            minPrice: 0.0,
+          ),
+          CompareModel(compares: [
+            Compare(
+              headerCategory: 'Date',
+              left: 'Latest',
+              right: 'Oldest',
+            ),
+            Compare(
+              headerCategory: 'Price',
+              left: 'Low to Hight',
+              right: 'Hight to Low',
+            ),
+          ], header: 'Compares'),
+          CategoryModelSearch(
+            header: 'Categories',
+            categories: const [
+              'Hahaha',
+              'Hihihihihi',
+              'Hohohoho',
+              'Hehehe',
+              'Huhuhu'
+            ],
+          )
+        ],
       ),
     );
   }
