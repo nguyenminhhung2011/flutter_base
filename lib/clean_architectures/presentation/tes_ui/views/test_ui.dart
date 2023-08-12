@@ -121,49 +121,95 @@ class PageTest5 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SearchLayout<ModelTest>(
-      searchCall: (text, filters) async => [],
+    return SearchLayout<ModelImageTest>(
+      searchCall: (text, filters, currentPage) async {
+        log('hhdhdhdhhhh');
+        await Future.delayed(const Duration(seconds: 3));
+        return <ModelImageTest>[
+          for (int t = 0; t < 10; t++)
+            ModelImageTest(
+              imageUrl: ImageConst.baseImageView,
+              title: 'Product t$text',
+              subTitle: 'This is product $t of page $currentPage',
+            ),
+        ];
+      },
       itemBuilder: (_, data) {
-        return const Row(children: []);
+        return _itemBuilder(data);
       },
       groupHeaderStyle: GroupHeaderStyle(
         contentHeaderSearchPadding: const EdgeInsets.all(10.0),
-        listFilter: [
-          PriceModel(
-            header: 'By price',
-            maxPrice: 10000,
-            minPrice: 0.0,
-          ),
-          PriceModel(
-            header: 'By Sale',
-            maxPrice: 10000,
-            minPrice: 0.0,
-          ),
-          CompareModel(compares: [
-            Compare(
-              headerCategory: 'Date',
-              left: 'Latest',
-              right: 'Oldest',
+        listFilter: _listFilter,
+      ),
+    );
+  }
+
+  Padding _itemBuilder(ModelImageTest data) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Row(
+        children: [
+          Container(
+            width: 80.0,
+            height: 80.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(data.imageUrl),
+              ),
             ),
-            Compare(
-              headerCategory: 'Price',
-              left: 'Low to Hight',
-              right: 'Hight to Low',
+          ),
+          const SizedBox(width: 10.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(data.title),
+                Text(data.subTitle),
+              ],
             ),
-          ], header: 'Compares'),
-          CategoryModelSearch(
-            header: 'Categories',
-            categories: const [
-              'Hahaha',
-              'Hihihihihi',
-              'Hohohoho',
-              'Hehehe',
-              'Huhuhu'
-            ],
           )
         ],
       ),
     );
+  }
+
+  List<FilterModel> get _listFilter {
+    return [
+      PriceModel(
+        header: 'By price',
+        maxPrice: 10000,
+        minPrice: 0.0,
+      ),
+      PriceModel(
+        header: 'By Sale',
+        maxPrice: 10000,
+        minPrice: 0.0,
+      ),
+      CompareModel(compares: [
+        Compare(
+          headerCategory: 'Date',
+          left: 'Latest',
+          right: 'Oldest',
+        ),
+        Compare(
+          headerCategory: 'Price',
+          left: 'Low to Hight',
+          right: 'Hight to Low',
+        ),
+      ], header: 'Compares'),
+      CategoryModelSearch(
+        header: 'Categories',
+        categories: const [
+          'Hahaha',
+          'Hihihihihi',
+          'Hohohoho',
+          'Hehehe',
+          'Huhuhu'
+        ],
+      )
+    ];
   }
 }
 

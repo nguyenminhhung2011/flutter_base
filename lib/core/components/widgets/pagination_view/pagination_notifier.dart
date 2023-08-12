@@ -14,21 +14,17 @@ class PaginationNotifier<T> extends ChangeNotifier {
   bool get loading => _loading;
 
   Future<void> fetchPaginationItems(int limit) async {
-    if (_loading || preloadedItems.isEmpty) {
+    if (preloadedItems.isEmpty) {
       return;
     }
     _loading = true;
     notifyListeners();
 
+    updateCurrentOperation(preloadedItems.length ~/ limit);
+
     if (_currentOperation != null) {
-      _currentOperation?.cancel(); // Cancel the current operation if it exists
+      preloadedItems.addAll(await _currentOperation!.value);
     }
-
-    _currentOperation = CancelableOperation.fromFuture(
-      call(preloadedItems.length ~/ limit, category),
-    );
-
-    preloadedItems.addAll(await _currentOperation!.value);
     _loading = false;
     notifyListeners();
   }
@@ -36,9 +32,22 @@ class PaginationNotifier<T> extends ChangeNotifier {
   void refreshItems(int limit) async {
     _loading = true;
     notifyListeners();
-    preloadedItems.clear();
-    preloadedItems = await call(0, category);
+    updateCurrentOperation(0);
+    preloadedItems = List<T>.empty(growable: true);
+    if (_currentOperation != null) {
+      preloadedItems.addAll(await _currentOperation!.value);
+    }
     _loading = false;
     notifyListeners();
+  }
+
+  void updateCurrentOperation(int currentPage) {
+    if (_currentOperation != null) {
+      _currentOperation?.cancel(); // Cancel the current operation if it exists
+      _currentOperation = null;
+    }
+
+    _currentOperation =
+        CancelableOperation.fromFuture(call(currentPage, category));
   }
 }

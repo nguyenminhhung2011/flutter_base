@@ -12,18 +12,16 @@ import '../controller/search_controller.dart';
 import '../model/filter_model.dart';
 
 typedef SearchCall<T> = Future<List<T>> Function(
-  String value,
-  List<FilterResponse> filter,
-);
+    String value, List<FilterResponse> filter, int currentPage);
 
 class GroupHeaderStyle {
   final String hintText;
-  final TextStyle? hintStyle;
-  final TextStyle? textStyle;
   final double searchRadius;
+  final TextStyle? textStyle;
+  final TextStyle? hintStyle;
   final List<String> headerColors;
-  final EdgeInsets? contentHeaderSearchPadding;
   final List<FilterModel> listFilter;
+  final EdgeInsets? contentHeaderSearchPadding;
   const GroupHeaderStyle({
     this.textStyle,
     this.hintStyle,
@@ -35,23 +33,32 @@ class GroupHeaderStyle {
   });
 }
 
+class PaginationStyle {
+  final int limit;
+  const PaginationStyle({
+    this.limit = 10,
+  });
+}
+
 class SearchLayout<T> extends StatefulWidget {
-  final bool leadingAuto;
-  final ScrollPhysics scrollPhysics;
-  final EdgeInsets? padding;
-  final SearchCall<T> searchCall;
-  final GroupHeaderStyle groupHeaderStyle;
-  final SearchLayoutController<T>? searchLayoutController;
-  final Widget Function(BuildContext, T) itemBuilder;
   final bool isReverse;
   final bool shrinkWrap;
+  final bool leadingAuto;
+  final EdgeInsets? padding;
+  final SearchCall<T> searchCall;
+  final ScrollPhysics scrollPhysics;
+  final PaginationStyle paginationStyle;
+  final GroupHeaderStyle groupHeaderStyle;
+  final Widget Function(BuildContext, T) itemBuilder;
+  final SearchLayoutController<T>? searchLayoutController;
   const SearchLayout({
     super.key,
     this.padding,
-    this.isReverse = false,
     this.shrinkWrap = true,
+    this.isReverse = false,
     this.leadingAuto = false,
     this.searchLayoutController,
+    this.paginationStyle = const PaginationStyle(),
     this.groupHeaderStyle = const GroupHeaderStyle(),
     this.scrollPhysics = const BouncingScrollPhysics(),
     required this.itemBuilder,
@@ -77,7 +84,7 @@ class _SearchLayoutState<T> extends State<SearchLayout<T>>
   @override
   void initState() {
     _paginationNotifier = PaginationNotifier<T>(
-      (p0, category) async => <T>[],
+      (currentPage, category) async => paginationCall(currentPage: currentPage),
       List.empty(),
     );
     _searchController = SearchLayoutController<T>(searchCall: widget.searchCall)
@@ -85,17 +92,24 @@ class _SearchLayoutState<T> extends State<SearchLayout<T>>
     _searchTextController = TextEditingController();
     super.initState();
   }
+  // pagination function
 
-  void _onRefresh() {
-    _searchController.onSearch();
+  Future<List<T>> paginationCall({required int currentPage}) async {
+    return await _searchController.onSearch(currentPage: currentPage);
   }
+
+  void _onRefreshPagination() {
+    _paginationNotifier.refreshItems(widget.paginationStyle.limit);
+  }
+
+  ////////////////////////
 
   void _onSubmitted(String text) {
     if (text.isEmpty) {
       return;
     }
     _searchController.onSetNewRecommendSearch(text);
-    _searchController.onSearch();
+    _onRefreshPagination();
   }
 
   void _onRemoveRecommendSearch(String textRemove) {
@@ -104,6 +118,18 @@ class _SearchLayoutState<T> extends State<SearchLayout<T>>
 
   void _onSelectedRecommendText(String text) {
     _searchTextController.text = text;
+  }
+
+  void _onTextChange(String text) {
+    _searchController.onTextChange(text);
+    if (text.isNotEmpty) {
+      _onRefreshPagination();
+    }
+  }
+
+  void _onFilterCall(List<FilterResponse> listFilters) {
+    _searchController.onApplyFilter(listFilters);
+    _onRefreshPagination();
   }
 
   @override
@@ -130,7 +156,8 @@ class _SearchLayoutState<T> extends State<SearchLayout<T>>
     final recommendSearch = searchLayoutController.recommendSearch;
     return Scaffold(
       backgroundColor: backgroundColor,
-      bottomSheet: Row(
+      extendBody: true,
+      bottomNavigationBar: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           _changeTypeViewField(searchLayoutController),
@@ -141,8 +168,8 @@ class _SearchLayoutState<T> extends State<SearchLayout<T>>
           HeaderSearch(
             hintStyle: widget.groupHeaderStyle.hintStyle,
             textStyle: widget.groupHeaderStyle.textStyle,
-            textChange: _searchController.onTextChange,
-            filterCall: searchLayoutController.onApplyFilter,
+            textChange: _onTextChange,
+            filterCall: _onFilterCall,
             colors: widget.groupHeaderStyle.headerColors,
             actionIcon: const Icon(Icons.filter_list, color: Colors.white),
             onSubmittedText: _onSubmitted,
@@ -196,18 +223,22 @@ class _SearchLayoutState<T> extends State<SearchLayout<T>>
       ),
       const Divider(thickness: 0.5),
       Expanded(
-        child: PaginationViewCustom<T>(
-          paginationNotifier: _paginationNotifier,
-          paginationDataCall: (currentPage, category) async => <T>[],
-          items: const [],
-          limitFetch: 10,
-          itemBuilder: (context, data, _) => widget.itemBuilder(context, data),
-          physics: widget.scrollPhysics,
-          isReverse: widget.isReverse,
-          initWidget: Center(
-            child: CircularProgressIndicator(color: primaryColor),
+        child: RefreshIndicator(
+          onRefresh: () async => _onRefreshPagination(),
+          child: PaginationViewCustom<T>(
+            paginationNotifier: _paginationNotifier,
+            paginationDataCall: (currentPage, category) async => <T>[],
+            items: const [],
+            limitFetch: widget.paginationStyle.limit,
+            itemBuilder: (context, data, _) =>
+                widget.itemBuilder(context, data),
+            physics: widget.scrollPhysics,
+            isReverse: widget.isReverse,
+            initWidget: Center(
+              child: CircularProgressIndicator(color: primaryColor),
+            ),
+            shrinkWrap: widget.shrinkWrap,
           ),
-          shrinkWrap: widget.shrinkWrap,
         ),
       ),
     ];
