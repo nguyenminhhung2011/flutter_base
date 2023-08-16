@@ -115,14 +115,15 @@ class _BuildMaterialAppState extends State<BuildMaterialApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: S.delegate.supportedLocales,
-          theme: ThemeData(
-            primaryColor: '#07AEAF'.toColor(),
-            primaryColorDark: '#07AEAF'.toColor(),
-            scaffoldBackgroundColor: Colors.white,
-            fontFamily: 'Montserrat',
-            dividerColor: Colors.grey.withOpacity(0.4),
-          ),
-          darkTheme: ThemeData.dark().copyWith(
+          theme: widget.light?.copyWith(
+                primaryColor: '#07AEAF'.toColor(),
+                primaryColorDark: '#07AEAF'.toColor(),
+                scaffoldBackgroundColor: Colors.white,
+                dividerColor: Colors.grey.withOpacity(0.4),
+                // fontFamily: 'Montserrat',
+              ) ??
+              ThemeData(),
+          darkTheme: widget.dark.copyWith(
             primaryColor: '#07AEAF'.toColor(),
             scaffoldBackgroundColor: Colors.black,
             dividerColor: Colors.grey.withOpacity(0.4),
