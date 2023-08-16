@@ -32,6 +32,20 @@ class Constant {
   static List<Map<String, dynamic>> budgetItems = [
     {'color': Colors.blue, 'header': 'Shopping', 'icon': '🛒'},
     {'color': '#07AEAF'.toColor(), 'header': 'Health', 'icon': '🏥'},
-    {'color': Colors.yellow, 'header': 'Family', 'icon': '👪'},
+    {'color': Colors.yellow, 'header': 'Family', 'icon': '👪'}
+  ];
+  static List<String> boardNumber = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    'Exit',
+    '0',
+    '🗑️'
   ];
 }

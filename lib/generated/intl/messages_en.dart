@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("About"),
         "add": MessageLookupByLibrary.simpleMessage("add"),
         "addNewBill": MessageLookupByLibrary.simpleMessage("Add new bill"),
         "addTransactions":
@@ -31,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("All"),
         "anotherFeature":
             MessageLookupByLibrary.simpleMessage("Another features"),
+        "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
         "bill": MessageLookupByLibrary.simpleMessage("Bills"),
         "billDetail": MessageLookupByLibrary.simpleMessage("Bill Detail"),
         "budget": MessageLookupByLibrary.simpleMessage("Budgets"),
@@ -41,24 +43,39 @@ class MessageLookup extends MessageLookupByLibrary {
         "byPrice": MessageLookupByLibrary.simpleMessage("By Price"),
         "categories": MessageLookupByLibrary.simpleMessage("Categories"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
+        "codeAndFingerPrints":
+            MessageLookupByLibrary.simpleMessage("Code and fingerprint"),
+        "currencies": MessageLookupByLibrary.simpleMessage("Currencies"),
         "currentEvent": MessageLookupByLibrary.simpleMessage("Current events"),
+        "darkTheme": MessageLookupByLibrary.simpleMessage("Dark theme"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "discoverEvents":
             MessageLookupByLibrary.simpleMessage("Discover Awesome Events!"),
         "empty": MessageLookupByLibrary.simpleMessage("Empty"),
         "end": MessageLookupByLibrary.simpleMessage("End"),
+        "enterCode": MessageLookupByLibrary.simpleMessage("Enter code"),
+        "errorCode": MessageLookupByLibrary.simpleMessage("Error code"),
         "event": MessageLookupByLibrary.simpleMessage("Events"),
         "eventDetail": MessageLookupByLibrary.simpleMessage("Event detail"),
         "expenseMoney": MessageLookupByLibrary.simpleMessage("Expense money"),
+        "generalSettings":
+            MessageLookupByLibrary.simpleMessage("General settings"),
         "inFlow": MessageLookupByLibrary.simpleMessage("InFlow"),
         "incomeMoney": MessageLookupByLibrary.simpleMessage("Income money"),
+        "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lendLoan": MessageLookupByLibrary.simpleMessage("Lend & loan"),
+        "lightTheme": MessageLookupByLibrary.simpleMessage("Light theme"),
         "limit": MessageLookupByLibrary.simpleMessage("Budget limit"),
+        "lockAndSecurity":
+            MessageLookupByLibrary.simpleMessage("Lock and Security"),
+        "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
+        "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "nearestTransaction":
             MessageLookupByLibrary.simpleMessage("Nearest transactions"),
         "nextMonth": MessageLookupByLibrary.simpleMessage("Next month"),
         "nextYear": MessageLookupByLibrary.simpleMessage("Next year"),
         "noPeoples": m0,
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "of1": MessageLookupByLibrary.simpleMessage("of"),
         "outFlow": MessageLookupByLibrary.simpleMessage("OutFlow"),
         "overView": MessageLookupByLibrary.simpleMessage("Overview"),
@@ -76,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "select": MessageLookupByLibrary.simpleMessage("select"),
         "sendBill": MessageLookupByLibrary.simpleMessage("Send Bill"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),
         "spent": MessageLookupByLibrary.simpleMessage("Spent"),
         "spentPerDate": MessageLookupByLibrary.simpleMessage("Spent per day"),

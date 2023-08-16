@@ -8,6 +8,8 @@ class CommonAppSettingPref {
   static const String _expiredTime = "_expiredTime";
 
   static const String _language = "language";
+  static const String _currency = "currency";
+  static const String _appearance = "appearance";
   static const String _theme = "theme";
   static const String _darkOption = "darkOption";
   static const String _font = "font";
@@ -20,6 +22,7 @@ class CommonAppSettingPref {
   static const String _domain = 'domain';
   static const String _branch = 'branch';
   static const String _userId = 'userId';
+  static const String _passCode = 'passCode';
 
   static const String _securePassword = 'secretAppKey';
   static const String _biometricLogin = 'biometricLogin';
@@ -90,6 +93,18 @@ class CommonAppSettingPref {
 
   static Future<bool> setRefreshToken(String value) {
     return Preferences.setString(_refreshToken, value);
+  }
+
+  static String getPassCode() {
+    return Preferences.getString(_passCode) ?? '';
+  }
+
+  static Future<bool> setPassCode(String value) {
+    return Preferences.setString(_passCode, value);
+  }
+
+  static void removePassCode() {
+    Preferences.remove(_passCode);
   }
 
   static String getRefreshToken() {
@@ -164,6 +179,22 @@ class CommonAppSettingPref {
 
   static String? getLanguage() {
     return Preferences.getString(_language);
+  }
+
+  static Future<bool> setCurrency(String currencyName) {
+    return Preferences.setString(_currency, currencyName);
+  }
+
+  static String? getCurrency() {
+    return Preferences.getString(_currency);
+  }
+
+  static Future<bool> setAppearance(String appearanceName) {
+    return Preferences.setString(_appearance, appearanceName);
+  }
+
+  static String? getAppearance() {
+    return Preferences.getString(_appearance);
   }
 
   static Future<bool> setDarkOptions(String darkOption) {

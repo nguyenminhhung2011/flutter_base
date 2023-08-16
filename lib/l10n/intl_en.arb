@@ -63,5 +63,20 @@
     "anotherFeature": "Another features",
     "category": "Category",
     "sortBy": "Sort By",
-    "byPrice": "By Price"
+    "settings": "Settings",
+    "languages": "Languages",
+    "currencies": "Currencies",
+    "appearance": "Appearance",
+    "logIn": "Log in",
+    "logOut": "Log out",
+    "darkTheme": "Dark theme",
+    "lightTheme": "Light theme",
+    "notifications": "Notifications",
+    "codeAndFingerPrints": "Code and fingerprint",
+    "lockAndSecurity": "Lock and Security",
+    "generalSettings": "General settings",
+    "byPrice": "By Price",
+    "enterCode": "Enter code",
+    "errorCode": "Error code",
+    "about": "About"
 }

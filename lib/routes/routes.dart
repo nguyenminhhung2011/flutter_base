@@ -8,4 +8,5 @@ class Routes {
   static const String events = '/events';
   static const String eventDetail = '/event_detail';
   static const String billDetail = '/bill_detail';
+  static const String passCode = '/pass_code';
 }

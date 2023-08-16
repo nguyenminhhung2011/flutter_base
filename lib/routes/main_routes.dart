@@ -4,6 +4,7 @@ import 'package:flutter_base_clean_architecture/clean_architectures/presentation
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/budget_detail/views/budget_detail.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/event_detail/views/event_detail_screen.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/events/views/events_screen.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/setting_layout/views/passcode_screen.dart';
 import 'package:flutter_base_clean_architecture/routes/routes.dart';
 
 import '../clean_architectures/presentation/budget/views/budget_screen.dart';
@@ -41,8 +42,14 @@ class MainRoutes {
           arguments is int
               ? BudgetDetail(heroIndex: arguments)
               : const SizedBox(),
-          curvesIn: Curves.linear,
+          curvesIn: Curves.linear,);
           // begin: const Offset(0, 1.0),
+      case Routes.passCode:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) {
+            return PassCodeScreen(routes: settings.arguments.toString());
+          },
         );
       case Routes.testUi:
         return MaterialPageRoute(

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/core/components/config/app_config.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/string_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/category/category_model.dart';
@@ -9,20 +10,22 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/category
 import 'package:flutter_base_clean_architecture/core/components/widgets/category_layout/category_layout_type.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/loading_indicator.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/pagination_view/pagination_list_view.dart';
-import 'package:flutter_base_clean_architecture/core/components/widgets/popup_button_custom.dart';
+import 'package:flutter_base_clean_architecture/core/components/config/setting_config.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/setting_layout/views/setting_screen.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/tab_bar/tab_bar_model.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/tree_view_custom/tree_view.dart';
 import '../../../../core/components/constant/image_const.dart';
+import '../../../../core/components/mixins/app_mixin.dart';
 import '../../../../core/components/widgets/banner/banner_slider.dart';
 import '../../../../core/components/widgets/category/category_custom.dart';
 import '../../../../core/components/widgets/category/category_type.dart';
-import '../../../../core/components/widgets/search_layout/header_search/header_search.dart';
-import '../../../../core/components/widgets/search_layout/model/filter_model.dart';
-import '../../../../core/components/widgets/search_layout/views/search_layou.dart';
+import '../../../../core/components/layout/search_layout/header_search/header_search.dart';
+import '../../../../core/components/layout/search_layout/model/filter_model.dart';
+import '../../../../core/components/layout/search_layout/views/search_layou.dart';
 import '../../../../core/components/widgets/tab_bar/tab_bar_type.dart';
 import '../../../../core/components/widgets/tab_bar/tabbar_custom.dart';
-import '../../../../generated/l10n.dart';
 
 class ModelTest {
   final String userName;
@@ -48,7 +51,7 @@ class TestUi extends StatefulWidget {
   State<TestUi> createState() => _TestUiState();
 }
 
-class _TestUiState extends State<TestUi> {
+class _TestUiState extends State<TestUi> with AppMixin {
   final ValueNotifier<int> _index = ValueNotifier<int>(0);
 
   final dashboardItem = <TabBarModel>[
@@ -64,52 +67,113 @@ class _TestUiState extends State<TestUi> {
     TabBarModel(
       svgAsset: ImageConst.documentIcon,
       title: 'Favorite',
-      screen: const PageTest3(),
+      screen: const PageTest5(),
     ),
     TabBarModel(
       svgAsset: ImageConst.personIcon,
       title: 'Profile',
-      screen: const PageTest5(),
+      screen: const PageTest6(),
     )
   ];
 
   @override
+  void onComplete() async {
+    await Future.delayed(const Duration(seconds: 3));
+    log("hahahah");
+  }
+
+  @override
+  AppConfig? get appConfig => AppConfig();
+
+  @override
   Widget build(BuildContext context) {
+    onComplete.call();
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      bottomNavigationBar: TabBarCustom(
-        radius: 15,
-        elevation: 0.1, // => elevation
-        tabBarType: TabBarType
-            .dotTabBar, //if you want display test change to textTabBar
-        // tabBarColor: Colors.black,
-        iconSize: 23.0,
-        iconSelectedColor: Theme.of(context).primaryColor,
-        duration: 200, // => set animation when change tab
-        isSvgIcon: true,
-        animatedTabStyle: const AnimatedTabStyle(posHeight: 5),
-        items: <TabBarItemStyle>[
-          ...dashboardItem.map(
-            (e) => TabBarItemStyle(
-              title: e.title,
-              assetIcon: e.svgAsset,
-              iconData: e.iconData,
-              screen: e.screen,
-            ),
+      body: Column(
+        children: [
+          const Spacer(),
+          imageShowWidget(splashType: SplashType.normalSplash),
+          const SizedBox(height: 10.0),
+          textApp(
+            title: <String>['Weather', ' App'],
+            style: [
+              context.titleMedium.copyWith(fontWeight: FontWeight.w700),
+              context.titleMedium.copyWith(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.w700,
+              )
+            ],
           ),
+          const SizedBox(height: 20.0),
+          loadingWidget(LoadingType.jumpingDot),
+          const Spacer(),
         ],
-        onChangeTab: (index) => _index.value = index,
       ),
-      body: ValueListenableBuilder(
-        valueListenable: _index,
-        builder: (context, index, child) {
-          return IndexedStack(
-            index: index,
-            sizing: StackFit.expand,
-            children: dashboardItem.map((e) => e.screen).toList(),
-          );
-        },
-      ),
+    );
+    // return Scaffold(
+    //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    //   bottomNavigationBar: TabBarCustom(
+    //     radius: 15,
+    //     elevation: 0.1, // => elevation
+    //     tabBarType: TabBarType
+    //         .dotTabBar, //if you want display test change to textTabBar
+    //     // tabBarColor: Colors.black,
+    //     iconSize: 23.0,
+    //     iconSelectedColor: Theme.of(context).primaryColor,
+    //     duration: 200, // => set animation when change tab
+    //     isSvgIcon: true,
+    //     animatedTabStyle: const AnimatedTabStyle(posHeight: 5),
+    //     items: <TabBarItemStyle>[
+    //       ...dashboardItem.map(
+    //         (e) => TabBarItemStyle(
+    //           title: e.title,
+    //           assetIcon: e.svgAsset,
+    //           iconData: e.iconData,
+    //           screen: e.screen,
+    //         ),
+    //       ),
+    //     ],
+    //     onChangeTab: (index) => _index.value = index,
+    //   ),
+    //   body: ValueListenableBuilder(
+    //     valueListenable: _index,
+    //     builder: (context, index, child) {
+    //       return IndexedStack(
+    //         index: index,
+    //         sizing: StackFit.expand,
+    //         children: dashboardItem.map((e) => e.screen).toList(),
+    //       );
+    //     },
+    //   ),
+    // );
+  }
+}
+
+class PageTest6 extends StatelessWidget {
+  const PageTest6({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SettingScreen(
+      settingConfig: SettingConfig.fromJson({
+        'enable_user': true,
+        'setting_layout': 'view1',
+        'app_bar_color': '07AEAF',
+        'hPadding': 10.0,
+        'vPadding': 10.0,
+        'shadow_elevation': 0.2,
+        'behindBackground':
+            'https://wallpapers.com/images/featured/panda-background-ymceqx76sixgb2ni.jpg',
+        'list_view': [
+          'security',
+          'lang',
+          'currencies',
+          'appearance',
+          'notifications',
+          'about',
+        ],
+      }),
     );
   }
 }
