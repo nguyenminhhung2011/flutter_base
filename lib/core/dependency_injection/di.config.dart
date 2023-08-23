@@ -21,7 +21,7 @@ import '../../clean_architectures/presentation/dashboard/bloc/dashboard_bloc.dar
     as _i4;
 import '../../clean_architectures/presentation/tes_ui/bloc/test_ui_bloc.dart'
     as _i8;
-import '../components/widgets/setting_layout/controller/setting_bloc.dart'
+import '../components/layout/setting_layout/controller/setting_bloc.dart'
     as _i10;
 import '../services/cloundinary_service.dart' as _i3;
 import '../services/image_pic_service.dart' as _i6;
