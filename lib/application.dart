@@ -118,15 +118,11 @@ class _BuildMaterialAppState extends State<BuildMaterialApp> {
           theme: widget.light?.copyWith(
                 primaryColor: '#07AEAF'.toColor(),
                 primaryColorDark: '#07AEAF'.toColor(),
-                scaffoldBackgroundColor: Colors.white,
-                dividerColor: Colors.grey.withOpacity(0.4),
                 // fontFamily: 'Montserrat',
               ) ??
               ThemeData(),
           darkTheme: widget.dark.copyWith(
             primaryColor: '#07AEAF'.toColor(),
-            scaffoldBackgroundColor: Colors.black,
-            dividerColor: Colors.grey.withOpacity(0.4),
           ),
           locale: state.data.currentLocale,
         );
