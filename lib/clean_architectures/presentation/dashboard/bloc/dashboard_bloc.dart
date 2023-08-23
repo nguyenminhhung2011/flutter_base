@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/home/views/home_screen.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/overview/view/overview_screen.dart';
 import 'package:flutter_base_clean_architecture/clean_architectures/presentation/plan/views/plan_screen.dart';
-import 'package:flutter_base_clean_architecture/core/components/widgets/setting_layout/views/setting_screen.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/tab_bar/tab_bar_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/components/config/setting_config.dart';
 import '../../../../core/components/constant/image_const.dart';
+import '../../../../core/components/layout/setting_layout/views/setting_screen.dart';
 
 part 'dashboard_state.dart';
 
