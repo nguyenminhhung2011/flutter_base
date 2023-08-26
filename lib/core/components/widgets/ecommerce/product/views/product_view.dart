@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../mixins/product_mixin.dart';
+import '../index.dart' show AnimatedFavorite;
 
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
@@ -12,6 +13,10 @@ class ProductView extends StatefulWidget {
 class _ProductViewState extends State<ProductView> with ProductMixin {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Stack(
+      children: [
+        AnimatedFavorite(onPress: () async {}, isLiked: true),
+      ],
+    );
   }
 }

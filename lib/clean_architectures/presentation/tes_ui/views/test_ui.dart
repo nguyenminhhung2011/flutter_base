@@ -13,6 +13,7 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/category
 import 'package:flutter_base_clean_architecture/core/components/widgets/custom_text_field.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_card.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_field.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_card_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/pagination_view/pagination_list_view.dart';
@@ -287,6 +288,13 @@ class _HomeScreenTestWidgetECommerceState
               subCategories: data.categories,
               onPress: () {},
             ),
+          ),
+          const SizedBox(height: 10.0),
+          Row(
+            children: [
+              const SizedBox(width: 20.0),
+              ProductCardView(),
+            ],
           ),
           const SizedBox(height: 100),
         ],

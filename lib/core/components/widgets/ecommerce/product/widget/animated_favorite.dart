@@ -52,7 +52,11 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
   }
 
   void _listenAnimationStatus(AnimationStatus animationStatus) {
-    // do something
+    // if (animationStatus == AnimationStatus.completed) {
+    //   if (isRun == false) {
+    //     _animationController.reverse();
+    //   }
+    // }
   }
 
   void _onTap() async {
@@ -60,9 +64,12 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
       return;
     }
     isRun = true;
-    _animationController.forward();
+    if (widget.isLiked) {
+      _animationController.reverse();
+    } else {
+      _animationController.forward();
+    }
     await widget.onPress();
-    _animationController.reverse();
     isRun = false;
   }
 
