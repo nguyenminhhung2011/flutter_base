@@ -13,6 +13,7 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/category
 import 'package:flutter_base_clean_architecture/core/components/widgets/custom_text_field.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_card.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_field.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_config_style.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_card_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
@@ -293,7 +294,15 @@ class _HomeScreenTestWidgetECommerceState
           Row(
             children: [
               const SizedBox(width: 20.0),
-              ProductCardView(),
+              ProductCardView(
+                productConfigStyle: ProductConfigStyle(
+                  isLikedProduct: false,
+                  ratting: 4.0,
+                  header: 'This is test product',
+                  image:
+                      'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 100),
