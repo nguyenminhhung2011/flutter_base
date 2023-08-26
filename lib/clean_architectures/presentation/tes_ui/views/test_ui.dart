@@ -224,7 +224,7 @@ class _HomeScreenTestWidgetECommerceState
             categoryType: CategoryType.listCategory, // => Change here
             spacingItem: 15.0,
             marginLeft: 10.0,
-            numberRow: 2,
+            numberRow: 1,
             isIconOut: true,
             categoryGridFormat:
                 const CategoryGridFormat(crossSpacing: 10.0, mainSpacing: 10.0),
@@ -241,7 +241,7 @@ class _HomeScreenTestWidgetECommerceState
                   color: e.color,
                   iconSize: 35,
                   isIcon: e.isIconData,
-                  radius: 100,
+                  radius: 10,
                   paddingBottom: 15.0,
                   paddingRight: 15.0,
                   paddingTop: 15.0,
@@ -253,10 +253,11 @@ class _HomeScreenTestWidgetECommerceState
           ),
           const SizedBox(height: 19.09),
           CollectionField<CollectionExample>(
-            headerTitle: 'Cuối tuần ăn gì?',
+            headerTitle: '🍔 Cuối tuần ăn gì?',
             subTitle: 'Hông biết ăn gì fastfood gơi ý ngay',
             actionTitle: 'See all',
             fetchCollection: () async {
+              ///[fetch data here]
               await Future.delayed(const Duration(seconds: 3));
               return [
                 ...[
@@ -284,6 +285,7 @@ class _HomeScreenTestWidgetECommerceState
               elevation: 10.0,
               bannerColor: Colors.orange,
               subCategories: data.categories,
+              onPress: () {},
             ),
           ),
           const SizedBox(height: 100),

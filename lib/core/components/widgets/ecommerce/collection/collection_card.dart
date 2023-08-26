@@ -111,6 +111,12 @@ class CollectionCard extends StatelessWidget {
           ].expand((e) => [e, const SizedBox(height: 10.0)]).toList()
             ..removeLast(),
         ),
+        // Align(
+        //   alignment: Alignment.topRight,
+        //   child: AnimatedFavorite(onPress: () async {
+        //     await Future.delayed(const Duration(seconds: 2));
+        //   }),
+        // ),
         if (banner != null)
           CornerBanner(
             bannerPosition:

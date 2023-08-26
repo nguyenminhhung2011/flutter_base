@@ -3,12 +3,19 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RattingWidgetCustom extends StatelessWidget {
   final IconData? iconData;
+
   final double? itemPadding;
+
   final double rating;
+
   final double? itemSize;
+
   final EdgeInsetsGeometry? padding;
+
   final EdgeInsetsGeometry? margin;
+
   final Color? color;
+
   final Function(double)? ratingUpdate;
 
   const RattingWidgetCustom({

@@ -107,12 +107,12 @@ class _CollectionFieldState<T> extends State<CollectionField<T>> {
           ),
           trailing: widget.actionTitle.renderWidgetNull(
             GestureDetector(
-              onTap: widget.actionPress ?? () {},
+              onTap: widget.actionPress,
               child: Text(widget.actionTitle ?? '', style: _actionStyle),
             ),
           ),
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 5.0),
         if (_loading) _loadingBuild() else _displayItem(),
       ],
     );
