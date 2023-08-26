@@ -324,5 +324,6 @@ class BadgeIndicator extends StatelessWidget {
         child: Text(inSide ?? '🐼'),
       ),
     );
+     
   }
 }

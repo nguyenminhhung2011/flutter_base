@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/skeleton_custom.dart';
+import 'package:skeletons/skeletons.dart';
 
 class ImageCustom extends StatelessWidget {
   final String imageUrl;
@@ -9,6 +12,7 @@ class ImageCustom extends StatelessWidget {
   final bool isNetworkImage;
   final Color? color;
   final Widget? loadingWidget;
+  final bool? isSkelton;
   const ImageCustom({
     super.key,
     this.fit,
@@ -19,6 +23,7 @@ class ImageCustom extends StatelessWidget {
     this.loadingWidget,
     required this.imageUrl,
     required this.isNetworkImage,
+    this.isSkelton,
   });
 
   @override
@@ -27,12 +32,19 @@ class ImageCustom extends StatelessWidget {
       return Image.network(
         imageUrl,
         width: width ?? 50.0,
-        height: width ?? 50.0,
+        height: height ?? 50.0,
         fit: fit ?? BoxFit.cover,
         color: color,
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent? loadingProgress) {
           if (loadingProgress == null) return child;
+          if (isSkelton ?? false) {
+            return SkeletonContainer.circular(
+              width: width ?? 50.0,
+              height: height ?? 50.0,
+              borderRadius: BorderRadius.circular(5.0),
+            );
+          }
           return loadingWidget ??
               Center(
                 child: CircularProgressIndicator(
@@ -40,6 +52,12 @@ class ImageCustom extends StatelessWidget {
                 ),
               );
         },
+        errorBuilder: (_, __, ___) => Center(
+          child: Text(
+            'Image error',
+            style: context.titleMedium.copyWith(color: Colors.red),
+          ),
+        ),
       );
     }
     return Image.asset(

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 
 import '../skeleton_custom.dart';
 
@@ -55,7 +56,7 @@ class _BannerSliderWidgetState extends State<BannerSliderWidget> {
   void onPageChange(int index) {
     setState(() {
       _currentPage = index;
-    }); 
+    });
   }
 
   @override
@@ -152,14 +153,18 @@ class _BannerSliderWidgetState extends State<BannerSliderWidget> {
             images[startIndex + i],
             width: width,
             fit: BoxFit.cover,
+            errorBuilder: (_, __, ___) => Center(
+              child: Text(
+                'Image error',
+                style: context.titleMedium.copyWith(color: Colors.red),
+              ),
+            ),
             loadingBuilder: (BuildContext context, Widget child,
                 ImageChunkEvent? loadingProgress) {
               if (loadingProgress == null) return child;
               return switch (widget.typeLoading) {
                 TypeLoading.circular => Center(
-                    child: CircularProgressIndicator(
-                      color: Theme.of(context).primaryColor,
-                    ),
+                    child: CircularProgressIndicator(color: widget.dotColor),
                   ),
                 _ => SkeletonContainer.rounded(
                     height: height,

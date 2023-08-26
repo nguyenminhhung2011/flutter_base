@@ -125,6 +125,7 @@ dependencies:
   diffutil_dart: ^4.0.0
   flutter_isolate: ^2.0.4
   jumping_dot: ^0.0.6
+  super_banners: ^0.0.1
   # table_calendar: ^3.0.8
   # readmore: ^2.2.0
 
