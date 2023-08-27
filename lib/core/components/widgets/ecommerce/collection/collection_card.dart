@@ -72,8 +72,8 @@ class CollectionCard extends StatelessWidget {
               header,
               maxLines: 2,
               style: headerStyle ??
-                  context.titleMedium.copyWith(
-                    fontWeight: FontWeight.w600,
+                  context.titleSmall.copyWith(
+                    fontWeight: FontWeight.w500,
                     overflow: TextOverflow.ellipsis,
                   ),
             ),
@@ -111,12 +111,6 @@ class CollectionCard extends StatelessWidget {
           ].expand((e) => [e, const SizedBox(height: 10.0)]).toList()
             ..removeLast(),
         ),
-        // Align(
-        //   alignment: Alignment.topRight,
-        //   child: AnimatedFavorite(onPress: () async {
-        //     await Future.delayed(const Duration(seconds: 2));
-        //   }),
-        // ),
         if (banner != null)
           CornerBanner(
             bannerPosition:

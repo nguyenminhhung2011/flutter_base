@@ -153,7 +153,7 @@ class _CollectionFieldState<T> extends State<CollectionField<T>> {
               .map(
                 (e) => SkeletonContainer.circular(
                   width: double.infinity,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(5.0),
                   height: e,
                 ),
               )

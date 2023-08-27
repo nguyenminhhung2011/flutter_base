@@ -17,5 +17,8 @@
     "byPrice": "Theo giá",
     "enterCode": "Nhâp mã",
     "errorCode": "Mã lỗi",
-    "about": "Về chúng tôi"
+    "about": "Về chúng tôi",
+    "intStock": "Còn hàng",
+    "outStock": "Hết hàng",
+    "addToCart": "Thêm vào giỏ hàng"
 }

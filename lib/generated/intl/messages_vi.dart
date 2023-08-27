@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("Về chúng tôi"),
+        "addToCart": MessageLookupByLibrary.simpleMessage("Thêm vào giỏ hàng"),
         "appearance": MessageLookupByLibrary.simpleMessage("Giao diện"),
         "byPrice": MessageLookupByLibrary.simpleMessage("Theo giá"),
         "codeAndFingerPrints":
@@ -33,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorCode": MessageLookupByLibrary.simpleMessage("Mã lỗi"),
         "generalSettings":
             MessageLookupByLibrary.simpleMessage("Cài đặt chung"),
+        "intStock": MessageLookupByLibrary.simpleMessage("Còn hàng"),
         "languages": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Chế độ sáng"),
         "lockAndSecurity":
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logIn": MessageLookupByLibrary.simpleMessage("Đăng nhập"),
         "logOut": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "notifications": MessageLookupByLibrary.simpleMessage("Thông báo"),
+        "outStock": MessageLookupByLibrary.simpleMessage("Hết hàng"),
         "seeMore": MessageLookupByLibrary.simpleMessage("Xem thêm"),
         "settings": MessageLookupByLibrary.simpleMessage("Cài đặt"),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sắp xếp theo"),

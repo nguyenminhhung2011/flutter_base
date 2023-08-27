@@ -239,6 +239,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Int stock`
+  String get intStock {
+    return Intl.message(
+      'Int stock',
+      name: 'intStock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out stock`
+  String get outStock {
+    return Intl.message(
+      'Out stock',
+      name: 'outStock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

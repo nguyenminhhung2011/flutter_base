@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/skeleton_custom.dart';
-import 'package:skeletons/skeletons.dart';
 
 class ImageCustom extends StatelessWidget {
   final String imageUrl;

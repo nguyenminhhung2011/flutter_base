@@ -14,6 +14,7 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/custom_t
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_card.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_field.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_config_style.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_data.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_card_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
@@ -196,6 +197,7 @@ class _HomeScreenTestWidgetECommerceState
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: ListView(
+        physics: const BouncingScrollPhysics(),
         children: [
           Container(
             width: double.infinity,
@@ -241,7 +243,7 @@ class _HomeScreenTestWidgetECommerceState
                   typeImage: TypeImage.assetSvg,
                   iconUrl: e.iconUrl,
                   color: e.color,
-                  iconSize: 35,
+                  iconSize: 25,
                   isIcon: e.isIconData,
                   radius: 10,
                   paddingBottom: 15.0,
@@ -293,14 +295,27 @@ class _HomeScreenTestWidgetECommerceState
           const SizedBox(height: 10.0),
           Row(
             children: [
-              const SizedBox(width: 20.0),
+              const SizedBox(width: 10.0),
               ProductCardView(
+                favoritePress: () async {},
+                addToCartPress: () async {},
                 productConfigStyle: ProductConfigStyle(
+                  elevationShadow: 0.1,
+                  aspectRatio: 9 / 10,
+                  width: 160.0,
+                  radius: 3.0,
+                  stockStyle: StockStyle.text,
+                ),
+                productData: ProductData(
                   isLikedProduct: false,
                   ratting: 4.0,
-                  header: 'This is test product',
+                  boughtCount: 120,
+                  stockCount: 200,
+                  discount: 0.2,
+                  price: 100000,
+                  header: 'This is test product hiihiha',
                   image:
-                      'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+                      'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
                 ),
               ),
             ],

@@ -28,7 +28,7 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
 
   late Animation _animation;
 
-  double _iconSize = 15.0;
+  double _iconSize = 20.0;
   bool isRun = false;
 
   @override
@@ -37,7 +37,7 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
       vsync: this,
       duration: Duration(milliseconds: widget.animationDuration),
     );
-    _animation = Tween(begin: 15.0, end: 20.0).animate(
+    _animation = Tween(begin: 20.0, end: 25.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.bounceInOut),
     );
     _animation.addListener(_listenAnimation);
@@ -96,15 +96,15 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
             ),
             gradient: LinearGradient(
               colors: <Color>[
-                Theme.of(context).hintColor.withOpacity(0.6),
-                Theme.of(context).hintColor.withOpacity(0.7),
+                Theme.of(context).hintColor.withOpacity(0.3),
+                Theme.of(context).hintColor.withOpacity(0.4),
               ],
             ),
           ),
           child: widget.isLiked
               ? Icon(Icons.favorite, color: Colors.red, size: _iconSize)
               : Icon(Icons.favorite_outline,
-                  size: _iconSize, color: Colors.black),
+                  size: _iconSize, color: Theme.of(context).hintColor),
         ),
       ),
     );
