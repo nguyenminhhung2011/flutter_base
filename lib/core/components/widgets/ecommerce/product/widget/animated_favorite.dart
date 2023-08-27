@@ -33,6 +33,12 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.isLiked) {
+        _iconSize = 25;
+      }
+      setState(() {});
+    });
     _animationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: widget.animationDuration),
@@ -83,29 +89,26 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topRight,
-      child: GestureDetector(
-        onTap: _onTap,
-        child: Container(
-          padding: const EdgeInsets.all(5.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              bottomLeft: const Radius.circular(7.0),
-              topRight: Radius.circular(widget.radius ?? 0.0),
-            ),
-            gradient: LinearGradient(
-              colors: <Color>[
-                Theme.of(context).hintColor.withOpacity(0.3),
-                Theme.of(context).hintColor.withOpacity(0.4),
-              ],
-            ),
+    return GestureDetector(
+      onTap: _onTap,
+      child: Container(
+        padding: const EdgeInsets.all(5.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            bottomLeft: const Radius.circular(7.0),
+            topRight: Radius.circular(widget.radius ?? 0.0),
           ),
-          child: widget.isLiked
-              ? Icon(Icons.favorite, color: Colors.red, size: _iconSize)
-              : Icon(Icons.favorite_outline,
-                  size: _iconSize, color: Theme.of(context).hintColor),
+          gradient: LinearGradient(
+            colors: <Color>[
+              Theme.of(context).hintColor.withOpacity(0.3),
+              Theme.of(context).hintColor.withOpacity(0.4),
+            ],
+          ),
         ),
+        child: widget.isLiked
+            ? Icon(Icons.favorite, color: Colors.red, size: _iconSize)
+            : Icon(Icons.favorite_outline,
+                size: _iconSize, color: Theme.of(context).hintColor),
       ),
     );
   }

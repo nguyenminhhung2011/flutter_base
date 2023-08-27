@@ -14,6 +14,7 @@ class ProductData {
   final double? price;
 
   final int? boughtCount;
+  
 
   final int? stockCount;
 

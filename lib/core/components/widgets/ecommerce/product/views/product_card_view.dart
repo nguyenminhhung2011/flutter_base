@@ -57,6 +57,9 @@ class _ProductCardViewState extends State<ProductCardView> with ProductMixin {
 
   double? get _price => widget.productData.price;
 
+  double get _enableMarginHeight =>
+      widget.productConfigStyle.enableMarginHeight ?? 0.0;
+
   StockStyle? get _stockStyle => widget.productConfigStyle.stockStyle;
 
   int? get _boughtCount => widget.productData.boughtCount;
@@ -88,6 +91,7 @@ class _ProductCardViewState extends State<ProductCardView> with ProductMixin {
           children: [
             Container(
               width: _width,
+              margin: EdgeInsets.only(top: _enableMarginHeight),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(_radius),
                 color: Theme.of(context).cardColor,
@@ -103,24 +107,31 @@ class _ProductCardViewState extends State<ProductCardView> with ProductMixin {
               child: _renderBody(),
             ),
             if (_isLiked.isNotNull)
-              AnimatedFavorite(
-                radius: _radius,
-                onPress: widget.favoritePress ?? () async {},
-                isLiked: _isLiked ?? false,
+              Positioned(
+                top: _enableMarginHeight,
+                left: _width - (_isLiked ?? false ? 35 : 30),
+                child: AnimatedFavorite(
+                  radius: _radius,
+                  onPress: widget.favoritePress ?? () async {},
+                  isLiked: _isLiked ?? false,
+                ),
               ),
-            if (_discount.isNotNull)
-              CornerBanner(
-                bannerPosition:
-                    widget.productConfigStyle.cornerBannerPosition ??
-                        CornerBannerPosition.topLeft,
-                bannerColor: _bColor,
-                shadowColor: Colors.black.withOpacity(0.8),
-                elevation: widget.productConfigStyle.elevationBanner ?? 5.0,
-                child: Text(
-                  '- ${(_discount! * 100)}%',
-                  style: context.titleSmall.copyWith(
-                    color: _bColor.fontColorByBackground,
-                    fontSize: 12.0,
+            if (_discount.isNotNull && _discount! > 0)
+              Positioned(
+                top: _enableMarginHeight,
+                child: CornerBanner(
+                  bannerPosition:
+                      widget.productConfigStyle.cornerBannerPosition ??
+                          CornerBannerPosition.topLeft,
+                  bannerColor: _bColor,
+                  shadowColor: Colors.black.withOpacity(0.8),
+                  elevation: widget.productConfigStyle.elevationBanner ?? 5.0,
+                  child: Text(
+                    '- ${(_discount! * 100)}%',
+                    style: context.titleSmall.copyWith(
+                      color: _bColor.fontColorByBackground,
+                      fontSize: 12.0,
+                    ),
                   ),
                 ),
               ),

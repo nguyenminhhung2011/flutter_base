@@ -12,7 +12,7 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/category
 import 'package:flutter_base_clean_architecture/core/components/widgets/category_layout/category_layout_type.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/custom_text_field.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_card.dart';
-import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_field.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/base/item_horizontal_field.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_config_style.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_data.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_card_view.dart';
@@ -66,6 +66,21 @@ class CollectionExample {
   });
 }
 
+class ProductExample {
+  final String image;
+  final double discount;
+  final double price;
+  final double ratingPercent;
+  final bool isFavorite;
+  ProductExample({
+    required this.image,
+    required this.discount,
+    required this.price,
+    required this.ratingPercent,
+    required this.isFavorite,
+  });
+}
+
 class TestUi extends StatefulWidget {
   const TestUi({super.key});
 
@@ -110,6 +125,7 @@ class _TestUiState extends State<TestUi> with AppMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: TabBarCustom(
         radius: 5.0,
@@ -215,6 +231,7 @@ class _HomeScreenTestWidgetECommerceState
             hPadding: 0.0,
             dotColor: Colors.orange,
             autoPlay: true,
+            indicatorSize: 5.0,
             height: 180,
             dotPosition: MainAxisAlignment.center,
             images: [
@@ -256,7 +273,7 @@ class _HomeScreenTestWidgetECommerceState
             ],
           ),
           const SizedBox(height: 19.09),
-          CollectionField<CollectionExample>(
+          ItemHorizontalField<CollectionExample, CollectionCard>(
             headerTitle: '🍔 Cuối tuần ăn gì?',
             subTitle: 'Hông biết ăn gì fastfood gơi ý ngay',
             actionTitle: 'See all',
@@ -293,32 +310,58 @@ class _HomeScreenTestWidgetECommerceState
             ),
           ),
           const SizedBox(height: 10.0),
-          Row(
-            children: [
-              const SizedBox(width: 10.0),
-              ProductCardView(
-                favoritePress: () async {},
-                addToCartPress: () async {},
-                productConfigStyle: ProductConfigStyle(
-                  elevationShadow: 0.1,
-                  aspectRatio: 9 / 10,
-                  width: 160.0,
-                  radius: 3.0,
-                  stockStyle: StockStyle.text,
-                ),
-                productData: ProductData(
-                  isLikedProduct: false,
-                  ratting: 4.0,
-                  boughtCount: 120,
-                  stockCount: 200,
-                  discount: 0.2,
-                  price: 100000,
-                  header: 'This is test product hiihiha',
-                  image:
-                      'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
-                ),
+          ItemHorizontalField<ProductExample, ProductCardView>(
+            headerTitle: '🍜 Các món nước',
+            subTitle: '163, Nguyễn Văn Cừ ,q5, thành phố Hồ Chí Minh',
+            actionTitle: 'See all',
+            spacingFromHeader: 50.0,
+            behindImage:
+                'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+            imageHeight: 320,
+            fetchCollection: () async {
+              ///[fetch data here]
+              await Future.delayed(const Duration(seconds: 3));
+              return [
+                ...[
+                  'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
+                  'https://media.istockphoto.com/id/1469161068/photo/quang-noodles-traditional-vietnamese-quang-nam-province-noodles-dish.jpg?s=612x612&w=0&k=20&c=5JusTYBUCwsjBkJ2SV3NTkAniao0KbTwly06KtJIDUA=',
+                  'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/07/anh-2.png',
+                  'https://www.wokandkin.com/wp-content/uploads/2020/04/Hu-Tieu-saved-for-web.png',
+                  'https://toplist.vn/images/800px/pho-kho-cau-thanh-1027776.jpg'
+                ].mapIndexed(
+                  (index, e) => ProductExample(
+                    image: e,
+                    discount: 0.2,
+                    price: (index + 1) * 1000,
+                    ratingPercent: 3.5,
+                    isFavorite: index % 2 == 0,
+                  ),
+                )
+              ];
+            },
+            itemBuilder: (data) => ProductCardView(
+              favoritePress: () async {},
+              addToCartPress: () async {},
+              productConfigStyle: ProductConfigStyle(
+                elevationShadow: 0.2,
+                aspectRatio: 9 / 9,
+                width: 170.0,
+                radius: 10.0,
+                headerMaxLines: 1,
+                enableMarginHeight: 10.0,
+                stockStyle: StockStyle.text,
               ),
-            ],
+              productData: ProductData(
+                isLikedProduct: data.isFavorite,
+                ratting: data.ratingPercent,
+                boughtCount: 120,
+                stockCount: 200,
+                discount: data.discount,
+                price: data.price,
+                header: 'This is test product hiihiha',
+                image: data.image,
+              ),
+            ),
           ),
           const SizedBox(height: 100),
         ],

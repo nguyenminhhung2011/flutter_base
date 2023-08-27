@@ -24,6 +24,8 @@ class ProductConfigStyle {
   ///[Not required but update later]
   final TextStyle? headerStyle;
 
+  final double? enableMarginHeight;
+
   ///[banner style] Set up banner style here
 
   final Color? bannerColor;
@@ -41,6 +43,7 @@ class ProductConfigStyle {
     this.bannerColor,
     this.headerStyle,
     this.elevationBanner,
+    this.enableMarginHeight, 
     this.cornerBannerPosition,
     this.radius = 5.0,
     this.width = 150.0,

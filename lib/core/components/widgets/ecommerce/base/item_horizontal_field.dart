@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/widget_exetions.dart';
-import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_card.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/image_custom.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/skeleton_custom.dart';
 
 typedef CollectionFetch<T> = Future<List<T>> Function();
 
-class CollectionField<T> extends StatefulWidget {
+class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
   final CollectionFetch<T> fetchCollection;
 
   final Function()? actionPress;
 
-  final CollectionCard Function(T data) itemBuilder;
+  final R Function(T data) itemBuilder;
 
   final double spacingItem;
 
@@ -19,6 +19,12 @@ class CollectionField<T> extends StatefulWidget {
   final String? headerTitle;
 
   final String? subTitle;
+
+  final String? behindImage;
+
+  final double imageHeight;
+
+  final double spacingFromHeader;
 
   final String? actionTitle;
 
@@ -30,26 +36,31 @@ class CollectionField<T> extends StatefulWidget {
 
   final Widget? leading;
 
-  const CollectionField({
+  const ItemHorizontalField({
     super.key,
     this.leading,
     this.subTitle,
     this.actionTitle,
     this.actionPress,
     this.headerStyle,
+    this.behindImage,
     this.actionStyle,
     this.headerTitle,
     this.subTitleStyle,
+    this.spacingFromHeader = 10.0,
     this.spacingItem = 10.0,
+    this.imageHeight = 220.0,
     required this.fetchCollection,
     required this.itemBuilder,
   });
 
   @override
-  State<CollectionField<T>> createState() => _CollectionFieldState<T>();
+  State<ItemHorizontalField<T, R>> createState() =>
+      _ItemHorizontalFieldState<T, R>();
 }
 
-class _CollectionFieldState<T> extends State<CollectionField<T>> {
+class _ItemHorizontalFieldState<T, R extends Widget>
+    extends State<ItemHorizontalField<T, R>> {
   ///[Style]
   TextStyle get _headerStyle =>
       widget.headerStyle ??
@@ -87,8 +98,8 @@ class _CollectionFieldState<T> extends State<CollectionField<T>> {
   }
 
   @override
-  void didUpdateWidget(CollectionField<T> collectionField) {
-    super.didUpdateWidget(collectionField);
+  void didUpdateWidget(ItemHorizontalField<T, R> oldWidget) {
+    super.didUpdateWidget(oldWidget);
     _onFetchData();
   }
 
@@ -113,7 +124,19 @@ class _CollectionFieldState<T> extends State<CollectionField<T>> {
           ),
         ),
         const SizedBox(height: 5.0),
-        if (_loading) _loadingBuild() else _displayItem(),
+        Stack(
+          children: [
+            ///[image behind only support for network image]
+            if (widget.behindImage?.isNotEmpty ?? false)
+              ImageCustom(
+                imageUrl: widget.behindImage!,
+                isNetworkImage: true,
+                width: double.infinity,
+                height: widget.imageHeight,
+              ),
+            if (_loading) _loadingBuild() else _displayItem(),
+          ],
+        )
       ],
     );
   }
@@ -122,7 +145,7 @@ class _CollectionFieldState<T> extends State<CollectionField<T>> {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: <Widget>[
-            SizedBox(width: widget.spacingItem),
+            SizedBox(width: widget.spacingFromHeader),
             ..._listItem
                 .map(
                   (e) => widget.itemBuilder(e),
@@ -148,7 +171,7 @@ class _CollectionFieldState<T> extends State<CollectionField<T>> {
       width: 140.0,
       child: Column(
         children: [
-          SizedBox(width: widget.spacingItem),
+          SizedBox(width: widget.spacingFromHeader),
           ...<double>[140.0, 20.0, 20.0]
               .map(
                 (e) => SkeletonContainer.circular(
