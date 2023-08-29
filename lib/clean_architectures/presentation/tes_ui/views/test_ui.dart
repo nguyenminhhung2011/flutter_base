@@ -317,7 +317,7 @@ class _HomeScreenTestWidgetECommerceState
             spacingFromHeader: 50.0,
             behindImage:
                 'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
-            imageHeight: 320,
+            imageHeight: 340,
             fetchCollection: () async {
               ///[fetch data here]
               await Future.delayed(const Duration(seconds: 3));
@@ -349,6 +349,9 @@ class _HomeScreenTestWidgetECommerceState
                 radius: 10.0,
                 headerMaxLines: 1,
                 enableMarginHeight: 10.0,
+                headerStyle: context.titleMedium.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
                 stockStyle: StockStyle.text,
               ),
               productData: ProductData(
@@ -358,6 +361,7 @@ class _HomeScreenTestWidgetECommerceState
                 stockCount: 200,
                 discount: data.discount,
                 price: data.price,
+                description: 'This is deliciously dish',
                 header: 'This is test product hiihiha',
                 image: data.image,
               ),

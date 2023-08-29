@@ -66,6 +66,8 @@ class _ProductCardViewState extends State<ProductCardView> with ProductMixin {
 
   int? get _stockCount => widget.productData.stockCount;
 
+  String? get _description => widget.productData.description;
+
   @override
   Widget build(BuildContext context) {
     assert(
@@ -109,7 +111,7 @@ class _ProductCardViewState extends State<ProductCardView> with ProductMixin {
             if (_isLiked.isNotNull)
               Positioned(
                 top: _enableMarginHeight,
-                left: _width - (_isLiked ?? false ? 35 : 30),
+                left: _width - (_isLiked ?? false ? 33 : 30),
                 child: AnimatedFavorite(
                   radius: _radius,
                   onPress: widget.favoritePress ?? () async {},
@@ -171,6 +173,11 @@ class _ProductCardViewState extends State<ProductCardView> with ProductMixin {
                 maxLines: widget.productConfigStyle.headerMaxLines,
                 style: widget.productConfigStyle.headerStyle,
               ),
+              if (_description?.isNotEmpty ?? false)
+                descriptionDisplay(
+                  description: _description ?? '',
+                  descriptionStyle: widget.productConfigStyle.descriptionStyle,
+                ),
               if (_price.isNotNull)
                 priceDisplay(price: _price ?? 0.0, discount: _discount),
               if (_rating.isNotNull)

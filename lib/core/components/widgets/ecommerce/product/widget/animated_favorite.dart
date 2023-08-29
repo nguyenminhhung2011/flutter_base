@@ -35,7 +35,7 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.isLiked) {
-        _iconSize = 25;
+        _iconSize = 23;
       }
       setState(() {});
     });
@@ -43,7 +43,7 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
       vsync: this,
       duration: Duration(milliseconds: widget.animationDuration),
     );
-    _animation = Tween(begin: 20.0, end: 25.0).animate(
+    _animation = Tween(begin: 20.0, end: 23.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.bounceInOut),
     );
     _animation.addListener(_listenAnimation);

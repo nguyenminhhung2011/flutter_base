@@ -38,12 +38,16 @@ class ProductConfigStyle {
 
   late int headerMaxLines;
 
+  ///[not required]
+  final TextStyle? descriptionStyle;
+
   ProductConfigStyle({
     this.stockStyle,
     this.bannerColor,
     this.headerStyle,
     this.elevationBanner,
-    this.enableMarginHeight, 
+    this.descriptionStyle,
+    this.enableMarginHeight,
     this.cornerBannerPosition,
     this.radius = 5.0,
     this.width = 150.0,

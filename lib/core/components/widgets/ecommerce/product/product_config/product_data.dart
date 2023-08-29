@@ -5,6 +5,8 @@ class ProductData {
   final String header;
 
   /// [Not required value]
+  final String? description;
+
   final bool? isLikedProduct;
 
   final double? ratting;
@@ -14,7 +16,6 @@ class ProductData {
   final double? price;
 
   final int? boughtCount;
-  
 
   final int? stockCount;
 
@@ -23,6 +24,7 @@ class ProductData {
     this.ratting,
     this.discount,
     this.stockCount,
+    this.description,
     this.boughtCount,
     this.isLikedProduct,
     required this.image,

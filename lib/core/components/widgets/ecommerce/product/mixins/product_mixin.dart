@@ -18,6 +18,18 @@ mixin ProductMixin<T extends StatefulWidget> on State<T> {
     return RattingWidgetCustom(rating: ratingPercent, itemSize: 12.0);
   }
 
+  Widget descriptionDisplay({
+    required String description,
+    TextStyle? descriptionStyle,
+  }) {
+    final style = descriptionStyle ??
+        context.titleSmall.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 12.0,
+        );
+    return Text(description, style: style);
+  }
+
   Widget stockDisplay({
     required StockStyle stockStyle,
     required int boughtCount,
