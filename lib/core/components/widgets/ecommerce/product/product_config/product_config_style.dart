@@ -34,7 +34,11 @@ class ProductConfigStyle {
 
   final StockStyle? stockStyle;
 
+  final bool isRightImage;
+
   final CornerBannerPosition? cornerBannerPosition;
+
+  final String showBottomText;
 
   late int headerMaxLines;
 
@@ -49,10 +53,12 @@ class ProductConfigStyle {
     this.descriptionStyle,
     this.enableMarginHeight,
     this.cornerBannerPosition,
+    this.showBottomText = '',
     this.radius = 5.0,
     this.width = 150.0,
     this.blurRadius = 10.0,
     this.headerMaxLines = 2,
+    this.isRightImage = false,
     this.aspectRatio = 7 / 10,
     this.elevationShadow = 0.0,
     this.padding = const EdgeInsets.all(5.0),

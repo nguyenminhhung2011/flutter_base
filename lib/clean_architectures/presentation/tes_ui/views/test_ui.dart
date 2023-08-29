@@ -16,6 +16,7 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerc
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_config_style.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_data.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_card_view.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_horizontal_card.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/pagination_view/pagination_list_view.dart';
@@ -208,6 +209,24 @@ class _HomeScreenTestWidgetECommerceState
       ),
     ]
   ];
+  final List<ProductExample> _list = [
+    ...[
+      'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
+      'https://media.istockphoto.com/id/1469161068/photo/quang-noodles-traditional-vietnamese-quang-nam-province-noodles-dish.jpg?s=612x612&w=0&k=20&c=5JusTYBUCwsjBkJ2SV3NTkAniao0KbTwly06KtJIDUA=',
+      'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/07/anh-2.png',
+      'https://www.wokandkin.com/wp-content/uploads/2020/04/Hu-Tieu-saved-for-web.png',
+      'https://toplist.vn/images/800px/pho-kho-cau-thanh-1027776.jpg'
+    ].mapIndexed(
+      (index, e) => ProductExample(
+        image: e,
+        discount: 0.2,
+        price: (index + 1) * 1000,
+        ratingPercent: 3.5,
+        isFavorite: index % 2 == 0,
+      ),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -277,25 +296,22 @@ class _HomeScreenTestWidgetECommerceState
             headerTitle: '🍔 Cuối tuần ăn gì?',
             subTitle: 'Hông biết ăn gì fastfood gơi ý ngay',
             actionTitle: 'See all',
-            fetchCollection: () async {
-              ///[fetch data here]
-              await Future.delayed(const Duration(seconds: 3));
-              return [
-                ...[
-                  'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
-                  'https://ict-imgs.vgcloud.vn/2022/04/29/17/1.jpg',
-                  'https://www.minimeinsights.com/wp-content/uploads/2022/07/shopeefood-cover.jpg',
-                  'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png'
-                ].mapIndexed(
-                  (index, e) => CollectionExample(
-                    image: e,
-                    header: '✅ This is collect $index ',
-                    percent: 0.2,
-                    categories: ['Ma Giam 10%', 'Ma Giam 20%'],
-                  ),
-                )
-              ];
-            },
+            initData: [
+              ...[
+                'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+                'https://ict-imgs.vgcloud.vn/2022/04/29/17/1.jpg',
+                'https://www.minimeinsights.com/wp-content/uploads/2022/07/shopeefood-cover.jpg',
+                'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png'
+              ].mapIndexed(
+                (index, e) => CollectionExample(
+                  image: e,
+                  header: '✅ This is collect $index ',
+                  percent: 0.2,
+                  categories: ['Ma Giam 10%', 'Ma Giam 20%'],
+                ),
+              )
+            ],
+            isUpdateWhenMounted:false,
             itemBuilder: (data) => CollectionCard(
               image: data.image,
               header: data.header,
@@ -319,27 +335,8 @@ class _HomeScreenTestWidgetECommerceState
             behindImage:
                 'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
             imageHeight: 340,
-            fetchCollection: () async {
-              ///[fetch data here]  
-              await Future.delayed(const Duration(seconds: 3));
-              return [
-                ...[
-                  'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
-                  'https://media.istockphoto.com/id/1469161068/photo/quang-noodles-traditional-vietnamese-quang-nam-province-noodles-dish.jpg?s=612x612&w=0&k=20&c=5JusTYBUCwsjBkJ2SV3NTkAniao0KbTwly06KtJIDUA=',
-                  'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/07/anh-2.png',
-                  'https://www.wokandkin.com/wp-content/uploads/2020/04/Hu-Tieu-saved-for-web.png',
-                  'https://toplist.vn/images/800px/pho-kho-cau-thanh-1027776.jpg'
-                ].mapIndexed(
-                  (index, e) => ProductExample(
-                    image: e,
-                    discount: 0.2,
-                    price: (index + 1) * 1000,
-                    ratingPercent: 3.5,
-                    isFavorite: index % 2 == 0,
-                  ),
-                )
-              ];
-            },
+            initData: _list,
+            isUpdateWhenMounted: false,
             itemBuilder: (data) => ProductCardView(
               favoritePress: () async {},
               addToCartPress: () async {},
@@ -354,6 +351,83 @@ class _HomeScreenTestWidgetECommerceState
                   fontWeight: FontWeight.w500,
                 ),
                 stockStyle: StockStyle.text,
+              ),
+              productData: ProductData(
+                isLikedProduct: data.isFavorite,
+                ratting: data.ratingPercent,
+                boughtCount: 120,
+                stockCount: 200,
+                discount: data.discount,
+                price: data.price,
+                description: 'This is deliciously dish',
+                header: 'This is test product hiihiha',
+                image: data.image,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          ItemHorizontalField<ProductExample, ProductHorizontalCard>(
+            headerTitle: '🍜 Các món nước',
+            subTitle: '163, Nguyễn Văn Cừ ,q5, thành phố Hồ Chí Minh',
+            actionTitle: 'See all',
+            loadingCard: true,
+            spacingFromHeader: 50.0,
+            initData: _list,
+            isUpdateWhenMounted: false,
+            itemBuilder: (data) => ProductHorizontalCard<ModelImageTest>(
+              favoritePress: () async {},
+              addToCartPress: () async {},
+              getBottomItem: () async {
+                await Future.delayed(const Duration(seconds: 3));
+                return ModelImageTest(
+                  imageUrl: ImageConst.baseImageView,
+                  title: 'Product t',
+                  subTitle: 'This is product  of page',
+                );
+              },
+              bottomItem: (data) => Container(
+                color: Theme.of(context).cardColor,
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 80.0,
+                      height: 80.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                              data?.imageUrl ?? ImageConst.baseImageView),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10.0),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data?.title ?? ''),
+                          Text(data?.subTitle ?? ''),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              productConfigStyle: ProductConfigStyle(
+                elevationShadow: 0.2,
+                aspectRatio: 9 / 9,
+                width: 170.0,
+                radius: 0.0,
+                padding: const EdgeInsets.all(10.0),
+                headerMaxLines: 1,
+                enableMarginHeight: 10.0,
+                headerStyle: context.titleMedium.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+                stockStyle: StockStyle.text,
+                showBottomText: 'Show another result',
               ),
               productData: ProductData(
                 isLikedProduct: data.isFavorite,

@@ -4,10 +4,16 @@ import 'package:flutter_base_clean_architecture/core/components/extensions/widge
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_custom.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/skeleton_custom.dart';
 
+import '../product/views/product_horizontal_card.dart';
+
 typedef CollectionFetch<T> = Future<List<T>> Function();
 
 class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
-  final CollectionFetch<T> fetchCollection;
+  final CollectionFetch<T>? fetchCollection;
+
+  final List<T> initData;
+
+  final bool isUpdateWhenMounted;
 
   final Function()? actionPress;
 
@@ -39,7 +45,7 @@ class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
   final bool loadingCard;
 
   const ItemHorizontalField({
-    super.key,
+    Key? key,
     this.leading,
     this.subTitle,
     this.actionTitle,
@@ -49,13 +55,20 @@ class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
     this.actionStyle,
     this.headerTitle,
     this.subTitleStyle,
+    this.initData = const [],
     this.loadingCard = false,
     this.spacingItem = 10.0,
     this.imageHeight = 220.0,
     this.spacingFromHeader = 10.0,
-    required this.fetchCollection,
+    this.isUpdateWhenMounted = true,
+    this.fetchCollection,
     required this.itemBuilder,
-  });
+  })  : assert(
+          isUpdateWhenMounted
+              ? fetchCollection != null
+              : fetchCollection == null,
+        ),
+        super(key: key);
 
   @override
   State<ItemHorizontalField<T, R>> createState() =>
@@ -64,6 +77,10 @@ class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
 
 class _ItemHorizontalFieldState<T, R extends Widget>
     extends State<ItemHorizontalField<T, R>> {
+  final _typeOfBody = [ProductHorizontalCard].contains(R);
+
+  ///[true] is column [false] is row
+
   ///[Style]
   TextStyle get _headerStyle =>
       widget.headerStyle ??
@@ -86,15 +103,23 @@ class _ItemHorizontalFieldState<T, R extends Widget>
 
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _onFetchData();
+    });
     super.initState();
-    _onFetchData();
   }
 
   void _onFetchData() async {
+    if (!widget.isUpdateWhenMounted) {
+      _listItem.addAll(widget.initData);
+      setState(() {});
+      return;
+    }
     setState(() {
       _loading = true;
     });
-    _listItem = await widget.fetchCollection();
+    _listItem = await widget.fetchCollection!.call();
+    if (!mounted) return;
     setState(() {
       _loading = false;
     });
@@ -103,7 +128,7 @@ class _ItemHorizontalFieldState<T, R extends Widget>
   @override
   void didUpdateWidget(ItemHorizontalField<T, R> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _onFetchData();
+    // _onFetchData();
   }
 
   @override
@@ -137,7 +162,7 @@ class _ItemHorizontalFieldState<T, R extends Widget>
                 width: double.infinity,
                 height: widget.imageHeight,
               ),
-            if (_loading) _loadingBuild() else _displayItem(),
+            if (_loading) _loadingRender() else _renderBody(),
           ],
         )
       ],
@@ -158,6 +183,32 @@ class _ItemHorizontalFieldState<T, R extends Widget>
         ),
       );
 
+  Widget _renderBody() {
+    if (_typeOfBody) {
+      return Column(
+        children: [
+          ..._listItem
+              .map(
+                (e) => widget.itemBuilder(e),
+              )
+              .expand((e) => [e, SizedBox(height: widget.spacingItem)]),
+        ],
+      );
+    }
+    return _displayItem();
+  }
+
+  Widget _loadingRender() {
+    if (_typeOfBody) {
+      return Column(
+        children: [
+          for (int i = 0; i < 4; i++) _loadingItem(),
+        ].expand((e) => [e, SizedBox(width: widget.spacingItem)]).toList(),
+      );
+    }
+    return _loadingBuild();
+  }
+
   Widget _loadingBuild() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -171,7 +222,8 @@ class _ItemHorizontalFieldState<T, R extends Widget>
 
   Container _loadingItem() {
     return Container(
-      width: 160.0,
+      width: _typeOfBody ? double.infinity : 160.0,
+      height: _typeOfBody ? 100.0 : null,
       padding: const EdgeInsets.all(10.0),
       decoration: widget.loadingCard
           ? BoxDecoration(
@@ -185,22 +237,40 @@ class _ItemHorizontalFieldState<T, R extends Widget>
               ],
             )
           : null,
-      child: Column(
-        children: [
-          SizedBox(width: widget.spacingFromHeader),
-          ...<double>[140.0, 20.0, 20.0]
-              .map(
-                (e) => SkeletonContainer.circular(
-                  width: double.infinity,
+      child: _typeOfBody
+          ? Row(
+              children: [
+                SkeletonContainer.circular(
+                  width: 100.0,
                   borderRadius: BorderRadius.circular(5.0),
-                  height: e,
+                  height: double.infinity,
                 ),
-              )
-              .expand((e) => [e, const SizedBox(height: 10.0)])
-              .toList()
-            ..removeLast(),
-        ],
-      ),
+                const SizedBox(width: 10.0),
+                Expanded(
+                  child: SkeletonContainer.circular(
+                    width: double.infinity,
+                    borderRadius: BorderRadius.circular(5.0),
+                    height: double.infinity,
+                  ),
+                )
+              ],
+            )
+          : Column(
+              children: [
+                SizedBox(width: widget.spacingFromHeader),
+                ...<double>[140.0, 20.0, 20.0]
+                    .map(
+                      (e) => SkeletonContainer.circular(
+                        width: double.infinity,
+                        borderRadius: BorderRadius.circular(5.0),
+                        height: e,
+                      ),
+                    )
+                    .expand((e) => [e, const SizedBox(height: 10.0)])
+                    .toList()
+                  ..removeLast(),
+              ],
+            ),
     );
   }
 }
