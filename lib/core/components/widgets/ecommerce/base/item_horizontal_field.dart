@@ -36,6 +36,8 @@ class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
 
   final Widget? leading;
 
+  final bool loadingCard;
+
   const ItemHorizontalField({
     super.key,
     this.leading,
@@ -47,9 +49,10 @@ class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
     this.actionStyle,
     this.headerTitle,
     this.subTitleStyle,
-    this.spacingFromHeader = 10.0,
+    this.loadingCard = false,
     this.spacingItem = 10.0,
     this.imageHeight = 220.0,
+    this.spacingFromHeader = 10.0,
     required this.fetchCollection,
     required this.itemBuilder,
   });
@@ -166,9 +169,22 @@ class _ItemHorizontalFieldState<T, R extends Widget>
     );
   }
 
-  SizedBox _loadingItem() {
-    return SizedBox(
-      width: 140.0,
+  Container _loadingItem() {
+    return Container(
+      width: 160.0,
+      padding: const EdgeInsets.all(10.0),
+      decoration: widget.loadingCard
+          ? BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Theme.of(context).cardColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).shadowColor.withOpacity(0.2),
+                  blurRadius: 5.0,
+                )
+              ],
+            )
+          : null,
       child: Column(
         children: [
           SizedBox(width: widget.spacingFromHeader),
@@ -180,7 +196,9 @@ class _ItemHorizontalFieldState<T, R extends Widget>
                   height: e,
                 ),
               )
-              .expand((e) => [e, const SizedBox(height: 10.0)]),
+              .expand((e) => [e, const SizedBox(height: 10.0)])
+              .toList()
+            ..removeLast(),
         ],
       ),
     );

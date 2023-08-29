@@ -314,12 +314,13 @@ class _HomeScreenTestWidgetECommerceState
             headerTitle: '🍜 Các món nước',
             subTitle: '163, Nguyễn Văn Cừ ,q5, thành phố Hồ Chí Minh',
             actionTitle: 'See all',
+            loadingCard: true,
             spacingFromHeader: 50.0,
             behindImage:
                 'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
             imageHeight: 340,
             fetchCollection: () async {
-              ///[fetch data here]
+              ///[fetch data here]  
               await Future.delayed(const Duration(seconds: 3));
               return [
                 ...[
