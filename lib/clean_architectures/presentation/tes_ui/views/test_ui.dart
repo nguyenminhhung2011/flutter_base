@@ -11,6 +11,12 @@ import 'package:flutter_base_clean_architecture/core/components/widgets/category
 import 'package:flutter_base_clean_architecture/core/components/widgets/category_layout/category_layout.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/category_layout/category_layout_type.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/custom_text_field.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/collection/collection_card.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/base/item_horizontal_field.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_config_style.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/product_config/product_data.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_card_view.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/product/views/product_horizontal_card.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/expansion_panel_list/expansion_panel_list.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_stack_view/image_stac_view.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/pagination_view/pagination_list_view.dart';
@@ -48,6 +54,34 @@ class ModelImageTest {
   });
 }
 
+class CollectionExample {
+  final String image;
+  final String header;
+  final double percent;
+  final List<String> categories;
+  CollectionExample({
+    required this.image,
+    required this.header,
+    required this.percent,
+    required this.categories,
+  });
+}
+
+class ProductExample {
+  final String image;
+  final double discount;
+  final double price;
+  final double ratingPercent;
+  final bool isFavorite;
+  ProductExample({
+    required this.image,
+    required this.discount,
+    required this.price,
+    required this.ratingPercent,
+    required this.isFavorite,
+  });
+}
+
 class TestUi extends StatefulWidget {
   const TestUi({super.key});
 
@@ -62,7 +96,7 @@ class _TestUiState extends State<TestUi> with AppMixin {
     TabBarModel(
         svgAsset: ImageConst.homeIcon,
         title: 'Home',
-        screen: const PageTest1()),
+        screen: const HomeScreenTestWidgetECommerce()),
     TabBarModel(
       svgAsset: ImageConst.searchIcon,
       title: 'Search',
@@ -91,37 +125,14 @@ class _TestUiState extends State<TestUi> with AppMixin {
 
   @override
   Widget build(BuildContext context) {
-    // onComplete.call();
-    // return Scaffold(
-    //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-    //   body: Column(
-    //     children: [
-    //       const Spacer(),
-    //       imageShowWidget(splashType: SplashType.normalSplash),
-    //       const SizedBox(height: 10.0),
-    //       textApp(
-    //         title: <String>['Weather', ' App'],
-    //         style: [
-    //           context.titleMedium.copyWith(fontWeight: FontWeight.w700),
-    //           context.titleMedium.copyWith(
-    //             color: Theme.of(context).primaryColor,
-    //             fontWeight: FontWeight.w700,
-    //           )
-    //         ],
-    //       ),
-    //       const SizedBox(height: 20.0),
-    //       loadingWidget(LoadingType.jumpingDot),
-    //       const Spacer(),
-    //     ],
-    //   ),
-    // );
     return Scaffold(
+      extendBody: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBar: TabBarCustom(
-        radius: 15,
+        radius: 5.0,
         elevation: 0.1, // => elevation
         tabBarType: TabBarType
-            .dotTabBar, //if you want display test change to textTabBar
+            .animationTabBar, //if you want display test change to textTabBar
         // tabBarColor: Colors.black,
         iconSize: 23.0,
         iconSelectedColor: Theme.of(context).primaryColor,
@@ -149,6 +160,290 @@ class _TestUiState extends State<TestUi> with AppMixin {
             children: dashboardItem.map((e) => e.screen).toList(),
           );
         },
+      ),
+    );
+  }
+}
+
+class HomeScreenTestWidgetECommerce extends StatefulWidget {
+  const HomeScreenTestWidgetECommerce({super.key});
+
+  @override
+  State<HomeScreenTestWidgetECommerce> createState() =>
+      _HomeScreenTestWidgetECommerceState();
+}
+
+class _HomeScreenTestWidgetECommerceState
+    extends State<HomeScreenTestWidgetECommerce> {
+  List<CategoryModel> listCategory = <CategoryModel>[
+    for (int i = 0; i < 3; i++) ...[
+      CategoryModel(
+        title: 'Hotels',
+        iconUrl: ImageConst.homeIcon,
+        color: '#ffd3b5ff'.toColor(),
+        isIconData: false,
+      ),
+      CategoryModel(
+        title: 'Flight',
+        iconUrl: ImageConst.personIcon,
+        color: '#ffffc0ee'.toColor(),
+        isIconData: false,
+      ),
+      CategoryModel(
+        title: 'Airports',
+        iconUrl: ImageConst.documentIcon,
+        color: '#ffffdab5'.toColor(),
+        isIconData: false,
+      ),
+      CategoryModel(
+        title: 'Ticket',
+        iconUrl: ImageConst.searchIcon,
+        color: '#ff97d5ff'.toColor(),
+        isIconData: true,
+      ),
+      CategoryModel(
+        title: 'Phone',
+        iconUrl: ImageConst.searchIcon,
+        color: '#ff9735ff'.toColor(),
+        isIconData: false,
+      ),
+    ]
+  ];
+  final List<ProductExample> _list = [
+    ...[
+      'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/w_1000,h_684,c_limit/the-ultimate-hamburger.jpg',
+      'https://media.istockphoto.com/id/1469161068/photo/quang-noodles-traditional-vietnamese-quang-nam-province-noodles-dish.jpg?s=612x612&w=0&k=20&c=5JusTYBUCwsjBkJ2SV3NTkAniao0KbTwly06KtJIDUA=',
+      'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/07/anh-2.png',
+      'https://www.wokandkin.com/wp-content/uploads/2020/04/Hu-Tieu-saved-for-web.png',
+      'https://toplist.vn/images/800px/pho-kho-cau-thanh-1027776.jpg'
+    ].mapIndexed(
+      (index, e) => ProductExample(
+        image: e,
+        discount: 0.2,
+        price: (index + 1) * 1000,
+        ratingPercent: 3.5,
+        isFavorite: index % 2 == 0,
+      ),
+    )
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.arrow_back, color: Colors.orange),
+                )
+              ],
+            ),
+          ),
+          const BannerSliderWidget(
+            hPadding: 0.0,
+            dotColor: Colors.orange,
+            autoPlay: true,
+            indicatorSize: 5.0,
+            height: 180,
+            dotPosition: MainAxisAlignment.center,
+            images: [
+              'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+              'https://ict-imgs.vgcloud.vn/2022/04/29/17/1.jpg',
+              'https://www.minimeinsights.com/wp-content/uploads/2022/07/shopeefood-cover.jpg',
+              'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png'
+            ],
+          ),
+          CategoryField(
+            categoryType: CategoryType.listCategory, // => Change here
+            spacingItem: 15.0,
+            marginLeft: 10.0,
+            numberRow: 1,
+            isIconOut: true,
+            categoryGridFormat:
+                const CategoryGridFormat(crossSpacing: 10.0, mainSpacing: 10.0),
+            categoryTextStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  fontWeight: FontWeight.w400,
+                  overflow: TextOverflow.ellipsis,
+                ),
+            categories: <CategoryStyle>[
+              ...listCategory.mapIndexed(
+                (index, e) => CategoryStyle(
+                  text: e.title,
+                  typeImage: TypeImage.assetSvg,
+                  iconUrl: e.iconUrl,
+                  color: e.color,
+                  iconSize: 25,
+                  isIcon: e.isIconData,
+                  radius: 10,
+                  paddingBottom: 15.0,
+                  paddingRight: 15.0,
+                  paddingTop: 15.0,
+                  paddingLeft: 15.0,
+                  onPress: () {},
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 19.09),
+          ItemHorizontalField<CollectionExample, CollectionCard>(
+            headerTitle: '🍔 Cuối tuần ăn gì?',
+            subTitle: 'Hông biết ăn gì fastfood gơi ý ngay',
+            actionTitle: 'See all',
+            initData: [
+              ...[
+                'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+                'https://ict-imgs.vgcloud.vn/2022/04/29/17/1.jpg',
+                'https://www.minimeinsights.com/wp-content/uploads/2022/07/shopeefood-cover.jpg',
+                'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png'
+              ].mapIndexed(
+                (index, e) => CollectionExample(
+                  image: e,
+                  header: '✅ This is collect $index ',
+                  percent: 0.2,
+                  categories: ['Ma Giam 10%', 'Ma Giam 20%'],
+                ),
+              )
+            ],
+            isUpdateWhenMounted: false,
+            itemBuilder: (data) => CollectionCard(
+              image: data.image,
+              header: data.header,
+              banner: Text(
+                'De ${data.percent * 100}%',
+                style: context.titleSmall.copyWith(color: Colors.white),
+              ),
+              elevation: 10.0,
+              bannerColor: Colors.orange,
+              subCategories: data.categories,
+              onPress: () {},
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          ItemHorizontalField<ProductExample, ProductCardView>(
+            headerTitle: '🍜 Các món nước',
+            subTitle: '163, Nguyễn Văn Cừ ,q5, thành phố Hồ Chí Minh',
+            actionTitle: 'See all',
+            loadingCard: true,
+            spacingFromHeader: 50.0,
+            behindImage:
+                'https://giadinh.mediacdn.vn/296230595582509056/2021/12/1/anh-bia-02-1638354800293665678427.png',
+            imageHeight: 340,
+            initData: _list,
+            isUpdateWhenMounted: false,
+            itemBuilder: (data) => ProductCardView(
+              favoritePress: () async {},
+              addToCartPress: () async {},
+              productConfigStyle: ProductConfigStyle(
+                elevationShadow: 0.2,
+                aspectRatio: 9 / 9,
+                width: 170.0,
+                radius: 10.0,
+                headerMaxLines: 1,
+                enableMarginHeight: 10.0,
+                headerStyle: context.titleMedium.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+                stockStyle: StockStyle.text,
+              ),
+              productData: ProductData(
+                isLikedProduct: data.isFavorite,
+                ratting: data.ratingPercent,
+                boughtCount: 120,
+                stockCount: 200,
+                discount: data.discount,
+                price: data.price,
+                description: 'This is deliciously dish',
+                header: 'This is test product hiihiha',
+                image: data.image,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          ItemHorizontalField<ProductExample, ProductHorizontalCard>(
+            headerTitle: '🍜 Các món nước',
+            subTitle: '163, Nguyễn Văn Cừ ,q5, thành phố Hồ Chí Minh',
+            actionTitle: 'See all',
+            loadingCard: true,
+            spacingFromHeader: 50.0,
+            initData: _list,
+            isUpdateWhenMounted: false,
+            itemBuilder: (data) => ProductHorizontalCard<ModelImageTest>(
+              favoritePress: () async {},
+              addToCartPress: () async {},
+              // getBottomItem: () async {
+              //   await Future.delayed(const Duration(seconds: 3));
+              //   return ModelImageTest(
+              //     imageUrl: ImageConst.baseImageView,
+              //     title: 'Product t',
+              //     subTitle: 'This is product  of page',
+              //   );
+              // },
+              // bottomItem: (data) => Container(
+              //   color: Theme.of(context).cardColor,
+              //   padding: const EdgeInsets.all(20.0),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //         width: 80.0,
+              //         height: 80.0,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(5.0),
+              //           image: DecorationImage(
+              //             fit: BoxFit.cover,
+              //             image: NetworkImage(
+              //                 data?.imageUrl ?? ImageConst.baseImageView),
+              //           ),
+              //         ),
+              //       ),
+              //       const SizedBox(width: 10.0),
+              //       Expanded(
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Text(data?.title ?? ''),
+              //             Text(data?.subTitle ?? ''),
+              //           ],
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
+              productConfigStyle: ProductConfigStyle(
+                elevationShadow: 0.2,
+                aspectRatio: 9 / 9,
+                width: 170.0,
+                radius: 0.0,
+                padding: const EdgeInsets.all(10.0),
+                headerMaxLines: 1,
+                enableMarginHeight: 10.0,
+                headerStyle: context.titleMedium.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+                stockStyle: StockStyle.text,
+                showBottomText: 'Show another result',
+              ),
+              productData: ProductData(
+                isLikedProduct: data.isFavorite,
+                ratting: data.ratingPercent,
+                boughtCount: 120,
+                stockCount: 200,
+                discount: data.discount,
+                price: data.price,
+                description: 'This is deliciously dish',
+                header: 'This is test product hiihiha',
+                image: data.image,
+              ),
+            ),
+          ),
+          const SizedBox(height: 100),
+        ],
       ),
     );
   }
@@ -626,123 +921,123 @@ class _PageTest1State extends State<PageTest1> {
           badgeIndicator: BadgeIndicatorStyle(radius: 25.0),
           radius: 5.0,
         ),
-        // const Padding(
-        //   padding: EdgeInsets.all(8.0),
-        //   child: CustomTextField(
-        //     isShowCancelIcon: true,
-        //     isShowBorder: true,
-        //     borderRadius: 10.0,
-        //   ),
-        // ),
-        // const SizedBox(height: 30.0),
-        // CategoryField(
-        //   categoryType: CategoryType.selectedCategory, // => Change here
-        //   selectedColor: Theme.of(context).primaryColor,
-        //   numberColumn: 2,
-        //   spacingItem: 15.0,
-        //   marginLeft: 10.0,
-        //   marginRight: 10.0,
-        //   isIconOut: false,
-        //   categoryGridFormat:
-        //       const CategoryGridFormat(crossSpacing: 10.0, mainSpacing: 10.0),
-        //   unselectedColor: Theme.of(context).hintColor,
-        //   categoryTextStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-        //         fontWeight: FontWeight.w400,
-        //         overflow: TextOverflow.ellipsis,
-        //       ),
-        //   categories: <CategoryStyle>[
-        //     ...listCategory.mapIndexed(
-        //       (index, e) => CategoryStyle(
-        //         isSelected: index == 0,
-        //         text: e.title,
-        //         typeImage: TypeImage.assetSvg,
-        //         iconUrl: e.iconUrl,
-        //         color: e.color,
-        //         iconSize: 30,
-        //         isIcon: e.isIconData,
-        //         radius: 10,
-        //         paddingBottom: 10.0,
-        //         paddingRight: 15.0,
-        //         paddingTop: 10.0,
-        //         paddingLeft: 15.0,
-        //         backgroundGradientColor: [
-        //           "992195F3".toColor(),
-        //           "112195F3".toColor()
-        //         ],
-        //         onPress: () {},
-        //       ),
-        //     )
-        //   ],
-        // ),
-        // const SizedBox(height: 30.0),
-        // const BannerSliderWidget(
-        //   images: [
-        //     'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-        //     'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
-        //     'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg',
-        //     'https://imgv3.fotor.com/images/blog-cover-image/Image-Upscaler-2.jpg'
-        //   ],
-        // ),
-        // ImageStackView(
-        //   images: const [
-        //     'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
-        //     'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
-        //     'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg',
-        //     'https://imgv3.fotor.com/images/blog-cover-image/Image-Upscaler-2.jpg'
-        //   ],
-        //   isAssetImage: false,
-        //   itemsDisplay: 3,
-        //   actionColor: Theme.of(context).scaffoldBackgroundColor,
-        // ),
-        // const SizedBox(height: 10.0),
-        // Expanded(
-        //   child: PaginationViewCustom<ModelTest>(
-        //     paginationViewType: PaginationViewType.masonryGrid,
-        //     paginationDataCall: paginationCall,
-        //     physics: const AlwaysScrollableScrollPhysics(
-        //       parent: BouncingScrollPhysics(),
-        //     ),
-        //     hPadding: 10,
-        //     vPadding: 10,
-        //     typeIndicatorLoading: TypeIndicatorLoading.skeltonIndicator,
-        //     gridViewFormat: const GridViewFormat(
-        //       crossAxisCount: 3,
-        //     ),
-        //     skeltonFormat: const SkeltonFormat(
-        //       columns: [4, 1],
-        //     ),
-        //     limitFetch: 15,
-        //     items: <ModelTest>[
-        //       ModelTest(userName: 'Hung', bio: 'Nguyen Minh Hung'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //       ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
-        //     ],
-        //     itemBuilder: (BuildContext context, ModelTest data, int index) {
-        //       return Container(
-        //         height: index * 5 + 70, // support for masonry layout
-        //         width: index * 1, // support for masonry layout
-        //         decoration: BoxDecoration(
-        //           color: Theme.of(context).primaryColor,
-        //           borderRadius: BorderRadius.circular(10),
-        //         ),
-        //         child: Column(
-        //           mainAxisAlignment: MainAxisAlignment.center,
-        //           crossAxisAlignment: CrossAxisAlignment.center,
-        //           children: [
-        //             Text(data.userName),
-        //             Text(data.bio),
-        //           ],
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // ),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: CustomTextField(
+            isShowCancelIcon: true,
+            isShowBorder: true,
+            borderRadius: 10.0,
+          ),
+        ),
+        const SizedBox(height: 30.0),
+        CategoryField(
+          categoryType: CategoryType.selectedCategory, // => Change here
+          selectedColor: Theme.of(context).primaryColor,
+          numberColumn: 2,
+          spacingItem: 15.0,
+          marginLeft: 10.0,
+          marginRight: 10.0,
+          isIconOut: false,
+          categoryGridFormat:
+              const CategoryGridFormat(crossSpacing: 10.0, mainSpacing: 10.0),
+          unselectedColor: Theme.of(context).hintColor,
+          categoryTextStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+                fontWeight: FontWeight.w400,
+                overflow: TextOverflow.ellipsis,
+              ),
+          categories: <CategoryStyle>[
+            ...listCategory.mapIndexed(
+              (index, e) => CategoryStyle(
+                isSelected: index == 0,
+                text: e.title,
+                typeImage: TypeImage.assetSvg,
+                iconUrl: e.iconUrl,
+                color: e.color,
+                iconSize: 30,
+                isIcon: e.isIconData,
+                radius: 10,
+                paddingBottom: 10.0,
+                paddingRight: 15.0,
+                paddingTop: 10.0,
+                paddingLeft: 15.0,
+                backgroundGradientColor: [
+                  "992195F3".toColor(),
+                  "112195F3".toColor()
+                ],
+                onPress: () {},
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 30.0),
+        const BannerSliderWidget(
+          images: [
+            'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
+            'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
+            'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg',
+            'https://imgv3.fotor.com/images/blog-cover-image/Image-Upscaler-2.jpg'
+          ],
+        ),
+        ImageStackView(
+          images: const [
+            'https://www.seiu1000.org/sites/main/files/main-images/camera_lense_0.jpeg',
+            'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg',
+            'https://imgv3.fotor.com/images/blog-richtext-image/part-blurry-image.jpg',
+            'https://imgv3.fotor.com/images/blog-cover-image/Image-Upscaler-2.jpg'
+          ],
+          isAssetImage: false,
+          itemsDisplay: 3,
+          actionColor: Theme.of(context).scaffoldBackgroundColor,
+        ),
+        const SizedBox(height: 10.0),
+        Expanded(
+          child: PaginationViewCustom<ModelTest>(
+            paginationViewType: PaginationViewType.masonryGrid,
+            paginationDataCall: paginationCall,
+            physics: const AlwaysScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
+            hPadding: 10,
+            vPadding: 10,
+            typeIndicatorLoading: TypeIndicatorLoading.skeltonIndicator,
+            gridViewFormat: const GridViewFormat(
+              crossAxisCount: 3,
+            ),
+            skeltonFormat: const SkeltonFormat(
+              columns: [4, 1],
+            ),
+            limitFetch: 15,
+            items: <ModelTest>[
+              ModelTest(userName: 'Hung', bio: 'Nguyen Minh Hung'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+              ModelTest(userName: 'MinHun', bio: 'Minhungsocute'),
+            ],
+            itemBuilder: (BuildContext context, ModelTest data, int index) {
+              return Container(
+                height: index * 5 + 70, // support for masonry layout
+                width: index * 1, // support for masonry layout
+                decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(data.userName),
+                    Text(data.bio),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
       ],
     );
   }

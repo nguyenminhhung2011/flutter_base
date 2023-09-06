@@ -579,7 +579,7 @@ class _CategoryLayoutViewState<T> extends State<CategoryLayoutView<T>>
     );
   }
 
-  PaginationViewCustom<dynamic> _paginationField() {
+  PaginationViewCustom<T> _paginationField() {
     return PaginationViewCustom<T>(
       paginationViewType: PaginationViewType.list,
       physics: widget.bothCategoryStyle.physics ??

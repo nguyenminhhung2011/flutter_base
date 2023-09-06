@@ -348,7 +348,7 @@ class ExpansionItem extends StatelessWidget {
       content: content ?? const SizedBox(),
       titleBuilder: (double animationValue, double easeInValue, bool isExpanded,
           toggleFunction) {
-        return InkWell(
+        return InkWell(  
           onTap: () => toggleFunction(animated: true),
           child: Padding(
             padding: const EdgeInsets.all(8),

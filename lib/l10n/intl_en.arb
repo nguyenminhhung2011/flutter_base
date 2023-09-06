@@ -17,5 +17,9 @@
     "byPrice": "By Price",
     "enterCode": "Enter code",
     "errorCode": "Error code",
-    "about": "About"
+    "about": "About",
+    "intStock": "Int stock",
+    "outStock": "Out stock",
+    "addToCart": "Add to cart"
+
 }

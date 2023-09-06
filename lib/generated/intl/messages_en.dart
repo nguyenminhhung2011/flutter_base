@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about": MessageLookupByLibrary.simpleMessage("About"),
+        "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "appearance": MessageLookupByLibrary.simpleMessage("Appearance"),
         "byPrice": MessageLookupByLibrary.simpleMessage("By Price"),
         "codeAndFingerPrints":
@@ -33,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorCode": MessageLookupByLibrary.simpleMessage("Error code"),
         "generalSettings":
             MessageLookupByLibrary.simpleMessage("General settings"),
+        "intStock": MessageLookupByLibrary.simpleMessage("Int stock"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lightTheme": MessageLookupByLibrary.simpleMessage("Light theme"),
         "lockAndSecurity":
@@ -40,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "logOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "outStock": MessageLookupByLibrary.simpleMessage("Out stock"),
         "seeMore": MessageLookupByLibrary.simpleMessage("See more"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By"),

@@ -24,6 +24,7 @@ class CategoryField extends StatefulWidget {
   final double? marginBottom;
   final double? spacingItem;
   final int? numberColumn;
+  final int? numberRow;
   final List<CategoryStyle> categories;
   final bool isCategoryIcon;
   final bool isIconOut;
@@ -41,6 +42,7 @@ class CategoryField extends StatefulWidget {
     this.isIconOut = false,
     this.spacingItem = 5.0,
     this.categoryGridFormat = const CategoryGridFormat(),
+    this.numberRow,
     this.numberColumn,
     this.selectedColor,
     this.unselectedColor,
@@ -77,6 +79,8 @@ class _CategoryFieldState extends State<CategoryField> {
   }
 
   Padding _listCategory() {
+    final numberRow = widget.numberRow ?? 1;
+    final countColumn = widget.categories.length / numberRow;
     return Padding(
       padding: EdgeInsets.only(
         top: widget.marginTop ?? 0.0,
@@ -85,23 +89,34 @@ class _CategoryFieldState extends State<CategoryField> {
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(width: widget.marginLeft ?? 0.0),
-            ...widget.categories
-                .map(
-                  (e) => CategoryItem(
-                    category: e,
-                    isIconOut: widget.isIconOut,
-                    categoryTextStyle: categoryTextStyle,
-                  ),
-                )
-                .expand(
-                  (element) =>
-                      [element, SizedBox(width: widget.spacingItem ?? 5.0)],
-                )
+            SizedBox(width: widget.marginLeft ?? 5.0),
+            ...List.generate(
+              (widget.categories.length / numberRow).ceil(),
+              (indexR) => Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: List.generate(
+                  numberRow,
+                  (indexC) {
+                    int index = indexC + (indexR * numberRow);
+                    return index < widget.categories.length
+                        ? CategoryItem(
+                            category: widget.categories[index],
+                            isIconOut: widget.isIconOut,
+                            categoryTextStyle: categoryTextStyle,
+                          )
+                        : const SizedBox();
+                  },
+                ).expand((e) => [e, const SizedBox(height: 5.0)]).toList()
+                  ..removeLast(),
+              ),
+            )
+                .expand((e) => [e, SizedBox(width: widget.spacingItem ?? 5.0)])
                 .toList()
-              ..removeLast()
+              ..removeLast(),
           ],
         ),
       ),

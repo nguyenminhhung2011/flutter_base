@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:flutter_base_clean_architecture/core/components/extensions/string_extensions.dart';
 import 'package:flutter_base_clean_architecture/routes/main_routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -116,13 +115,13 @@ class _BuildMaterialAppState extends State<BuildMaterialApp> {
           ],
           supportedLocales: S.delegate.supportedLocales,
           theme: widget.light?.copyWith(
-                primaryColor: '#07AEAF'.toColor(),
-                primaryColorDark: '#07AEAF'.toColor(),
+                primaryColor: Colors.orange,
+                primaryColorDark: Colors.orange,
                 // fontFamily: 'Montserrat',
               ) ??
               ThemeData(),
           darkTheme: widget.dark.copyWith(
-            primaryColor: '#07AEAF'.toColor(),
+            primaryColor: Colors.orange,
           ),
           locale: state.data.currentLocale,
         );
