@@ -311,7 +311,7 @@ class _HomeScreenTestWidgetECommerceState
                 ),
               )
             ],
-            isUpdateWhenMounted:false,
+            isUpdateWhenMounted: false,
             itemBuilder: (data) => CollectionCard(
               image: data.image,
               header: data.header,
@@ -377,44 +377,44 @@ class _HomeScreenTestWidgetECommerceState
             itemBuilder: (data) => ProductHorizontalCard<ModelImageTest>(
               favoritePress: () async {},
               addToCartPress: () async {},
-              getBottomItem: () async {
-                await Future.delayed(const Duration(seconds: 3));
-                return ModelImageTest(
-                  imageUrl: ImageConst.baseImageView,
-                  title: 'Product t',
-                  subTitle: 'This is product  of page',
-                );
-              },
-              bottomItem: (data) => Container(
-                color: Theme.of(context).cardColor,
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 80.0,
-                      height: 80.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.0),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              data?.imageUrl ?? ImageConst.baseImageView),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10.0),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(data?.title ?? ''),
-                          Text(data?.subTitle ?? ''),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              // getBottomItem: () async {
+              //   await Future.delayed(const Duration(seconds: 3));
+              //   return ModelImageTest(
+              //     imageUrl: ImageConst.baseImageView,
+              //     title: 'Product t',
+              //     subTitle: 'This is product  of page',
+              //   );
+              // },
+              // bottomItem: (data) => Container(
+              //   color: Theme.of(context).cardColor,
+              //   padding: const EdgeInsets.all(20.0),
+              //   child: Row(
+              //     children: [
+              //       Container(
+              //         width: 80.0,
+              //         height: 80.0,
+              //         decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(5.0),
+              //           image: DecorationImage(
+              //             fit: BoxFit.cover,
+              //             image: NetworkImage(
+              //                 data?.imageUrl ?? ImageConst.baseImageView),
+              //           ),
+              //         ),
+              //       ),
+              //       const SizedBox(width: 10.0),
+              //       Expanded(
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Text(data?.title ?? ''),
+              //             Text(data?.subTitle ?? ''),
+              //           ],
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
               productConfigStyle: ProductConfigStyle(
                 elevationShadow: 0.2,
                 aspectRatio: 9 / 9,

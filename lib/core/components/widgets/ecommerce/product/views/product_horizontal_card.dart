@@ -110,10 +110,12 @@ class _ProductHorizontalCardState<T> extends State<ProductHorizontalCard<T>>
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(() {
-        _positionedWidth = _globalKey.currentContext?.size?.width ?? 100.0;
-        _positionedTop = _globalKey.currentContext?.size?.height ?? 100.0;
-      });
+      if (mounted) {
+        setState(() {
+          _positionedWidth = _globalKey.currentContext?.size?.width ?? 100.0;
+          _positionedTop = _globalKey.currentContext?.size?.height ?? 100.0;
+        });
+      }
     });
     super.initState();
   }

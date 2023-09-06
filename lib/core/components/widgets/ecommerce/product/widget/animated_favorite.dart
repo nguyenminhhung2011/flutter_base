@@ -37,7 +37,9 @@ class _AnimatedFavoriteState extends State<AnimatedFavorite>
       if (widget.isLiked) {
         _iconSize = 23;
       }
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
     _animationController = AnimationController(
       vsync: this,

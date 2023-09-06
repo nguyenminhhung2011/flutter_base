@@ -44,7 +44,7 @@ class ProgressButton extends StatefulWidget {
     this.radius,
     this.padding,
     this.textStyle,
-    this.isAnimation = true,
+    this.isAnimation = true, 
     this.animationDuration = 300,
     this.buttonColor,
     this.loadingColor,

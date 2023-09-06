@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/context_extensions.dart';
 import 'package:flutter_base_clean_architecture/core/components/extensions/widget_exetions.dart';
+import 'package:flutter_base_clean_architecture/core/components/widgets/ecommerce/global_mixins/item_horizontal_mixin.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/image_custom.dart';
 import 'package:flutter_base_clean_architecture/core/components/widgets/skeleton_custom.dart';
 
@@ -76,7 +77,7 @@ class ItemHorizontalField<T, R extends Widget> extends StatefulWidget {
 }
 
 class _ItemHorizontalFieldState<T, R extends Widget>
-    extends State<ItemHorizontalField<T, R>> {
+    extends State<ItemHorizontalField<T, R>> with ItemHorizontalMixin {
   final _typeOfBody = [ProductHorizontalCard].contains(R);
 
   ///[true] is column [false] is row
@@ -169,20 +170,6 @@ class _ItemHorizontalFieldState<T, R extends Widget>
     );
   }
 
-  Widget _displayItem() => SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: <Widget>[
-            SizedBox(width: widget.spacingFromHeader),
-            ..._listItem
-                .map(
-                  (e) => widget.itemBuilder(e),
-                )
-                .expand((e) => [e, SizedBox(width: widget.spacingItem)]),
-          ],
-        ),
-      );
-
   Widget _renderBody() {
     if (_typeOfBody) {
       return Column(
@@ -195,7 +182,12 @@ class _ItemHorizontalFieldState<T, R extends Widget>
         ],
       );
     }
-    return _displayItem();
+    return displayItem<T>(
+      itemBuilder: widget.itemBuilder,
+      spacingFromHeader: widget.spacingFromHeader,
+      spacingItem: widget.spacingItem,
+      listItem: _listItem,
+    );
   }
 
   Widget _loadingRender() {
