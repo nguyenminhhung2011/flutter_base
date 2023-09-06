@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_banners/super_banners.dart';
 
+
 enum StockStyle { text, linearPercent }
 
 extension StockStyleExtensions on StockStyle {
