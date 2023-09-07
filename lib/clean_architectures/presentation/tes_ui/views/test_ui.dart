@@ -96,7 +96,8 @@ class _TestUiState extends State<TestUi> with AppMixin {
     TabBarModel(
         svgAsset: ImageConst.homeIcon,
         title: 'Home',
-        screen: const HomeScreenTestWidgetECommerce()),
+        screen: Container (),
+    ),
     TabBarModel(
       svgAsset: ImageConst.searchIcon,
       title: 'Search',
@@ -117,7 +118,6 @@ class _TestUiState extends State<TestUi> with AppMixin {
   @override
   void onComplete() async {
     await Future.delayed(const Duration(seconds: 3));
-    log("hahahah");
   }
 
   @override
