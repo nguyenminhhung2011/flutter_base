@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:collection/collection.dart';
@@ -98,7 +100,7 @@ class _SettingScreenState extends State<SettingScreen> {
       logOutSuccess: (_) {
         final popUpRoutes = widget.settingConfig.popUpRoute;
         if (popUpRoutes?.isNotEmpty ?? false) {
-          context.popUntil(popUpRoutes!);
+          context.pushAndRemoveAll(popUpRoutes!);
         }
       },
       updateAppearanceSuccess: (data) {
@@ -107,6 +109,9 @@ class _SettingScreenState extends State<SettingScreen> {
         } else {
           AdaptiveTheme.of(context).setLight();
         }
+      },
+      getUserFailed: (data, message) {
+        log("🌆[Get user info]$message");
       },
     );
   }
@@ -252,9 +257,9 @@ class _SettingScreenState extends State<SettingScreen> {
       const SizedBox(height: 10.0),
       if (_currentUser != null) ...[
         ...<String>[
-          _currentUser?.userName ?? '',
+          _currentUser?.name ?? '',
           _currentUser?.email ?? '',
-          _currentUser?.phoneNumber ?? '',
+          _currentUser?.phone ?? '',
           _currentUser?.creditCardNumber ?? '',
         ].mapIndexed(
           (index, text) {
@@ -265,8 +270,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ? AvatarWidget(
                     width: 40.0,
                     height: 40.0,
-                    imageUrl:
-                        _currentUser?.photoUrl ?? ImageConst.baseImageView,
+                    imageUrl: _currentUser?.avatar ?? ImageConst.baseImageView,
                   )
                 : Icon(
                     switch (index) {
@@ -282,7 +286,17 @@ class _SettingScreenState extends State<SettingScreen> {
               child: ListTile(
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
-                onTap: index == 0 ? () {} : null,
+                onTap: index == 0
+                    ? () async {
+                        final user = await context
+                            .openListPageWithRoute(Routes.userInfo);
+                        if (user is User) {
+                          _settingController.add(
+                            SettingEvent.updateNewUser(newUser: user),
+                          );
+                        }
+                      }
+                    : null,
                 leading: icon,
                 title: Text(text),
                 trailing: null,
@@ -297,7 +311,11 @@ class _SettingScreenState extends State<SettingScreen> {
         color: Theme.of(context).cardColor,
         elevation: 0.3,
         child: ListTile(
-          onTap: () {},
+          onTap: () {
+            if (_currentUser != null) {
+              _settingController.add(const SettingEvent.logOut());
+            }
+          },
           leading: Icon(logIcon),
           title: Text(logText, style: context.titleMedium),
           trailing: _forwardIcon,
@@ -416,6 +434,10 @@ class _SettingScreenState extends State<SettingScreen> {
         icon = Icons.people;
         title = S.of(context).about;
         onPress = () {};
+      case 'becomeTutor':
+        icon = Icons.school;
+        title = S.of(context).becomeTutor;
+        onPress = () => context.openListPageWithRoute(Routes.becomeTutor);
       default:
       //do something here
     }

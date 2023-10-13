@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_base_clean_architecture/clean_architectures/data/datasource/local/preferences.dart';
+import 'package:flutter_base_clean_architecture/core/dependency_injection/di.dart';
 
-import '../clean_architectures/data/datasource/local/preferences.dart';
 import '../clean_architectures/data/datasource/remote/auth/auth_api.dart';
-import 'dependency_injection/di.dart';
 
 class AppCoreFactory {
   static Dio createDio(String baseUrl) {
@@ -15,13 +15,13 @@ class AppCoreFactory {
       BaseOptions(
         baseUrl: baseUrl,
         headers: {
-          "content-type": "application/json",
+          "content-type": "application/json;encoding=utf-8",
           "Accept": "*/*",
         },
       ),
     )
-      // ..interceptors.add(LogInterceptor(requestBody: true, responseBody: true)); // add with app have social login
-      ..interceptors.add(TokenInterceptor());
+      ..interceptors.add(TokenInterceptor())
+      ..interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
     if (!kIsWeb) {
       (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
           (HttpClient client) {
@@ -38,6 +38,7 @@ class TokenInterceptor implements Interceptor {
   // final AuthApi _authApi = injector.get<AuthApi>();
 
   @override
+  // ignore: deprecated_member_use
   void onError(DioError err, ErrorInterceptorHandler handler) async {
     return handler.next(err);
   }
@@ -49,6 +50,8 @@ class TokenInterceptor implements Interceptor {
     String refreshToken = CommonAppSettingPref.getRefreshToken();
     int expiredTime = CommonAppSettingPref.getExpiredTime();
 
+    log('🌟[Access] $accessToken\n[Refresh] $refreshToken');
+
     if (accessToken.isEmpty || refreshToken.isEmpty || expiredTime == -1) {
       return handler.next(options);
     }
@@ -57,8 +60,13 @@ class TokenInterceptor implements Interceptor {
     final isExpired = DateTime.now().isAfter(expiredTimeParsed);
 
     if (isExpired) {
+      ///[Warning] if don't have this line code render dio call => duplicate
+      await CommonAppSettingPref.setExpiredTime(-1);
       try {
-        final response = await injector.get<AuthApi>().refreshToken();
+        final response = await injector.get<AuthApi>().refreshToken(body: {
+          'refreshToken': refreshToken,
+          'timezone': "7",
+        });
         if (response.response.statusCode == HttpStatus.ok &&
             response.data.isSuccess) {
           final responseData = response.data;

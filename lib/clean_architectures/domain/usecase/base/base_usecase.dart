@@ -1,4 +1,5 @@
 import 'package:flutter_base_clean_architecture/clean_architectures/data/datasource/local/preferences.dart';
+import 'package:flutter_base_clean_architecture/clean_architectures/data/models/app_error.dart';
 
 import '../../entities/user/user.dart';
 
@@ -22,6 +23,14 @@ abstract class BaseUseCase<T> {
 
   void removePassCode() {
     CommonAppSettingPref.removePassCode();
+  }
+
+  void removeRefreshToken(){
+    CommonAppSettingPref.removeRefreshToken();
+  }
+
+  void removeExpiredTime(){
+    CommonAppSettingPref.removeExpiredTime();
   }
 
   Future<bool>? setCurrencyCode({required String currencyCode}) async =>
@@ -57,4 +66,12 @@ abstract class BaseUseCase<T> {
   Future<T?>? getDataById({required String id}) => null;
   Future<T?>? updateData({required T newData}) => null;
   Future<bool>? deleteData({required T data}) => null;
+
+  ///[Streams] use case
+
+  SingleResult<User?>? loginS({
+    required String email,
+    required String password,
+  }) =>
+      null;
 }
