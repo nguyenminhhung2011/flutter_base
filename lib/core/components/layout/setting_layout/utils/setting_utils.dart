@@ -1,4 +1,3 @@
-
 import 'lang.dart';
 
 class SettingUtils {
@@ -7,7 +6,8 @@ class SettingUtils {
       langCode: 'en',
       name: 'English',
       index: 0,
-      image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/1200px-Flag_of_the_United_Kingdom_%281-2%29.svg.png',
+      image:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/1200px-Flag_of_the_United_Kingdom_%281-2%29.svg.png',
     ),
     Lang(
       langCode: 'vi',
